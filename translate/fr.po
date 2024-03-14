@@ -1,0 +1,42 @@
+# Translation of advancedreboot in LANGUAGE
+# Copyright (C) 2024
+# This file is distributed under the same license as the advancedreboot package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: advancedreboot\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/Scias/plasma-advancedreboot\n"
+"POT-Creation-Date: 2024-03-14 15:28+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show Windows entry"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show EFI entry"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Reboot to Windows"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Reboot to EFI"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "All entries are hidden - Please enable at least one in settings"
+msgstr ""
