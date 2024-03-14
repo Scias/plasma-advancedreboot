@@ -58,15 +58,24 @@ PlasmoidItem {
           PlasmaComponents.ToolButton {
             Layout.fillWidth: true
             icon.name: "im-msn"
-            text: "Reboot to Windows"
+            text: i18n("Reboot to Windows")
             onClicked: toWindows()
+            visible: plasmoid.configuration.showWindows
           }
 
           PlasmaComponents.ToolButton {
             Layout.fillWidth: true
-            icon.name: "run-build-configure"
-            text: "Reboot to EFI"
+            icon.name: "show-gpu-effects"
+            text: i18n("Reboot to EFI")
             onClicked: toEfi()
+            visible: plasmoid.configuration.showEfi
+          }
+
+          PlasmaComponents.Label {
+            padding: 5
+            anchors.centerIn: parent
+            text: i18n("All entries are hidden - Please enable at least one in settings")
+            visible: ! (plasmoid.configuration.showEfi || plasmoid.configuration.showWindows)
           }
 
         }
