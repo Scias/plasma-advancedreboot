@@ -73,7 +73,6 @@ PlasmoidItem {
 
           PlasmaComponents.Label {
             padding: 5
-            anchors.centerIn: parent
             text: i18n("All entries are hidden - Please enable at least one in settings")
             visible: ! (plasmoid.configuration.showEfi || plasmoid.configuration.showWindows)
           }
