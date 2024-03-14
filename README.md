@@ -1,6 +1,6 @@
 # Advanced Reboot Plasmoid for Plasma 6
 
-Extremely simple Plasmoid for KDE Plasma 6 and above that quickly allows you to reboot into Windows or to your motherboard's EFI menu.
+Extremely simple Plasmoid for KDE Plasma 6 that allows you to quickly reboot into Windows or to your motherboard's EFI menu.
 
 ## Requirements
 
@@ -21,7 +21,7 @@ This will NOT work on non-systemd systems and other bootloaders (GRUB, rEFInd...
 
 ## Bugs?
 
-- If the reboot is canceled (because of inhibitors or open documents), the reboot to efi/windows flag remains set, so the next reboot will still honor that previous choice. This also makes it possible to cumulate both EFI and Windows booting for the next reboot.
+- If the reboot is cancelled (because of inhibitors or open documents), the reboot to efi/windows flag remains set, so the next reboot will still honor that previous choice. This also makes it possible to cumulate both EFI and Windows booting for the next reboot.
 
 ## License
 
