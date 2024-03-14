@@ -14,10 +14,11 @@ This will NOT work on non-systemd systems and other bootloaders (GRUB, rEFInd...
 ## Roadmap
 
 - [ ] Better appeareance
+- [ ] French translation
 - [ ] Custom icons
 - [ ] Detect if requirements are really met and warn the user/disable the feature if not
 - [ ] Dynamically get and list all the bootloader entries
-- [ ] Ability to configure visibility of the items
+- [x] Ability to configure visibility of the items
 
 ## Bugs?
 
