@@ -7,13 +7,13 @@
             }
         ],
         "Category": "Utilities",
-        "Description": "Quick reboot to Windows or EFI",
-        "Description[fr]": "Redémarrage rapide vers Windows ou le menu EFI",
+        "Description": "Quickly reboot to a bootloader entry",
+        "Description[fr]": "Redémarrage rapide vers une entrée de démarrage",
         "Icon": "chronometer-reset",
         "Id": "com.gitlab.scias.advancedreboot",
         "Name": "Advanced Reboot",
         "Name[fr]": "Redémarrage avancé",
-        "Version": "0.1",
+        "Version": "0.2",
         "License": "Mozilla Public License 2.0",
         "Website": "https://www.gitlab.com/Scias/plasma-advancedreboot"
     },
