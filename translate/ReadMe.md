@@ -1,3 +1,4 @@
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
-| Template |       6 |       |
+| Template |       8 |       |
+| fr       |     8/8 |  100% |

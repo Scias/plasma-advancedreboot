@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-14 15:28+0100\n"
+"Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
+"POT-Creation-Date: 2024-03-16 20:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,24 +19,34 @@ msgstr ""
 
 #: ../contents/config/config.qml
 msgid "General"
-msgstr "Général"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Show Windows entry"
-msgstr "Afficher l'entrée Windows"
+msgid "Show Bootloader Menu entry"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Show EFI entry"
-msgstr "Afficher l'entrée EFI"
+msgstr ""
 
-#: ../contents/ui/main.qml
-msgid "Reboot to Windows"
-msgstr "Redémarrer vers Windows"
+#: ../contents/ui/FullRepresentation.qml
+msgid "Reboot to..."
+msgstr ""
 
-#: ../contents/ui/main.qml
-msgid "Reboot to EFI"
-msgstr "Redémarrer vers le menu EFI"
+#: ../contents/ui/FullRepresentation.qml
+msgid "Bootloader Menu"
+msgstr ""
 
-#: ../contents/ui/main.qml
-msgid "All entries are hidden - Please enable at least one in settings"
-msgstr "Aucune option n'est affichée - Merci d'en activer au moins une dans les réglages"
+#: ../contents/ui/FullRepresentation.qml
+msgid "EFI"
+msgstr ""
+
+#: ../contents/ui/FullRepresentation.qml
+msgid ""
+"This applet cannot work on this system.\n"
+"Check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
+msgstr ""
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "All the possible entries are currently hidden as per this applet settings."
+msgstr ""
