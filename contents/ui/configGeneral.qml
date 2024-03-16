@@ -8,17 +8,16 @@ import org.kde.kcmutils
 SimpleKCM {
   id: mainconfig
 
-  property alias cfg_showWindows: windows.checked
+  property alias cfg_showMenu: menu.checked
   property alias cfg_showEfi: efi.checked
 
   Kirigami.FormLayout {
     anchors.fill: parent
 
     PlasmaComponents.Switch {
-      id: windows
-      Kirigami.FormData.label: i18n("Show Windows entry")
+      id: menu
+      Kirigami.FormData.label: i18n("Show Bootloader Menu entry")
     }
-
     PlasmaComponents.Switch {
       id: efi
       Kirigami.FormData.label: i18n("Show EFI entry")
