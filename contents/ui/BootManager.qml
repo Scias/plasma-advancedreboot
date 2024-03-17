@@ -87,6 +87,8 @@ Item {
     }
 
     function doChecks() {
+        // Check qdbus
+        // Check bootctl
         executable.exec(cmdPre + cmdCheckEfi)
         executable.exec(cmdPre + cmdCheckMenu)
         executable.exec(cmdPre + cmdCheckCustom)
