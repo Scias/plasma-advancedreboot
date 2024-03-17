@@ -20,9 +20,10 @@ This will NOT work for non-systemd systems and other bootloaders (GRUB, rEFInd..
 - [x] Dynamically get and list all the bootloader entries
 - [ ] Ability to configure visibility of all entries (done for EFI/Bootloader menu entries)
 
-## Bugs?
+## Bugs
 
 - If the reboot is cancelled (because of inhibitors or open documents), the flags remain set. This means next reboot will still honor the choice made previously.
+- This will not work if sudo/root is needed for qdbus or bootctl interaction.
 
 ## License
 

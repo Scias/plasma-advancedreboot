@@ -7,7 +7,7 @@ Item {
 
     readonly property string cmdGetEntries: "bootctl list --json=short"
 
-    readonly property string cmdPre: "qdbus --system org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager."
+    readonly property string cmdPre: "qdbus6 --system org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager."
 
     readonly property string cmdSetEfi: "SetRebootToFirmwareSetup"
     readonly property string cmdSetMenu: "SetRebootToBootLoaderMenu"
