@@ -14,11 +14,16 @@ This will NOT work for non-systemd systems and other bootloaders (GRUB, rEFInd..
 ## Roadmap
 
 - [ ] Better appearance
-- [X] French translation
+- [X] Translation support
 - [ ] Custom icons
 - [x] Detect if requirements are really met and warn the user/disable the feature if not
 - [x] Dynamically get and list all the bootloader entries
 - [ ] Ability to configure visibility of all entries (done for EFI/Bootloader menu entries)
+
+## Translations
+
+- [X] French
+- [X] Dutch (by Heimen Stoffels)
 
 ## Bugs
 

@@ -46,7 +46,7 @@ Item {
             if (cmd == cmdGetEntries) {
                 const rawEntries = JSON.parse(stdout)
                 for (const entry of rawEntries) {
-                    if (!ignoreEntries.includes(entry.id) && entry.isSelected != true) {
+                    if (!ignoreEntries.includes(entry.id)) {
                         bootEntries.append(mapEntry(entry))
                     }
                 }
