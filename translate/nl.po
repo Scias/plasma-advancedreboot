@@ -1,0 +1,63 @@
+# Translation of advancedreboot in LANGUAGE
+# Copyright (C) 2024
+# This file is distributed under the same license as the advancedreboot package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: advancedreboot\n"
+"Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
+"POT-Creation-Date: 2024-03-16 20:18+0100\n"
+"PO-Revision-Date: 2024-03-17 12:39+0100\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "Algemeen"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show Bootloader Menu entry"
+msgstr "Opstartmenu-item tonen"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show EFI entry"
+msgstr "EFI in menu tonen"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Reboot to..."
+msgstr "Herstarten naar…"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Bootloader Menu"
+msgstr "Opstartmenu"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "EFI"
+msgstr "EFI"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid ""
+"This applet cannot work on this system.\n"
+"Check that the system is booted in UEFI mode and that systemd, systemd-boot "
+"are used and configured properly."
+msgstr ""
+"De widget werkt niet op dit systeem.\n"
+"Controleer of het systeem in UEFI-modus draait en of systemd en systemd-"
+"boot juist ingesteld zijn."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid ""
+"All the possible entries are currently hidden as per this applet settings."
+msgstr "Alle items zijn op basis van de widgetinstellingen verborgen."
+
+#~ msgid "Show Windows entry"
+#~ msgstr "Windows in menu tonen"
+
+#~ msgid "Reboot to Windows"
+#~ msgstr "Herstarten naar Windows"
