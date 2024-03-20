@@ -28,6 +28,7 @@ Item {
         "Mac OS" : "apple",
         "Memtest" : "memtest",
         "Arch Linux" : "archlinux",
+        "Endeavour" : "endeavour",
         "EFI Shell" : "shell",
         "Fedora" : "fedora",
         "Ubuntu" : "ubuntu",
