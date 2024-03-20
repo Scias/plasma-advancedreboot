@@ -1,5 +1,5 @@
-import QtQuick
-import QtQuick.Layouts
+import QtQuick 2.15
+import QtQuick.Layouts 1.15
 
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.extras as PlasmaExtras
@@ -7,64 +7,85 @@ import org.kde.kirigami 2.20 as Kirigami
 
 PlasmaExtras.Representation {
 
-    implicitHeight: column.implicitHeight + header.implicitHeight + 10
-    implicitWidth: column.implicitWidth
+  property bool eligible: false
 
-    spacing: 5
+  implicitWidth: Kirigami.Units.gridUnit * 20
+  implicitHeight: (eligible ? mainList.height : notEligibleMsg.height) + header.height + Kirigami.Units.largeSpacing
+
+  Layout.preferredWidth: implicitWidth
+  Layout.minimumWidth: implicitWidth
+  Layout.preferredHeight: implicitHeight
+  Layout.maximumHeight: implicitHeight
+  Layout.minimumHeight: implicitHeight
 
     header: PlasmaExtras.PlasmoidHeading {
-        contentItem: Kirigami.Heading {
-            horizontalAlignment: Text.AlignHCenter
-            text: i18n("Reboot to...")
-        }
+      contentItem: Kirigami.Heading {
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        text: i18n("Reboot into...")
+      }
     }
 
-    ColumnLayout {
-      id: column
+    ErrorMessage {
+      id: notEligibleMsg
+      sIcon: "dialog-error-symbolic"
+      message: i18n("This applet cannot work on this system.\nPlease check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly.")
+      show: !eligible
+    }
 
-      PlasmaComponents.ToolButton {
-        Layout.fillWidth: true
-        icon.name: "view-list-symbolic"
-        text: i18n("Bootloader Menu")
-        visible: plasmoid.configuration.showMenu
-        onClicked: bootmgr.bootToMenu()
-        enabled: bootmgr.canMenu
-      }
+    ListView {
+      id: mainList
+      visible: eligible
 
-      PlasmaComponents.ToolButton {
-        Layout.fillWidth: true
-        icon.name: "settings-configure"
-        text: i18n("EFI")
-        visible: plasmoid.configuration.showEfi
-        onClicked: bootmgr.bootToEfi()
-        enabled: bootmgr.canEfi
-      }
+      anchors.verticalCenter: parent.verticalCenter
 
-      Repeater {
-        model: bootEntries
-        PlasmaComponents.ToolButton {
-          required property var modelData
+      interactive: false
+
+      width: parent.width
+      height: bootMgr.bootEntries.count > 0 ? contentHeight : noEntriesMsg.height
+
+      spacing: Kirigami.Units.smallSpacing
+
+      model: bootMgr.bootEntries
+
+      delegate: PlasmaComponents.ItemDelegate {
+        required property string cmd
+        required property string bIcon
+        required property string fullTitle
+        width: parent.width
+        contentItem: RowLayout {
+
           Layout.fillWidth: true
-          icon.name: modelData.icon
-          text: modelData.showTitle
-          onClicked: bootmgr.bootToEntry(modelData.id)
+
+          Kirigami.Icon {
+            source: bIcon
+            color: Kirigami.Theme.colorSet
+            smooth: true
+            isMask: true
+            scale: 0.8
+          }
+
+          PlasmaComponents.Label {
+            Layout.fillWidth: true
+            text: fullTitle
+          }
         }
-      }
-
-      Kirigami.InlineMessage {
-        width: 300
-        text: i18n("This applet cannot work on this system.\nCheck that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly.")
-        type: Kirigami.MessageType.Error
-        visible: !bootEntries.count > 0 && !bootmgr.canEfi && !bootmgr.canMenu && !bootmgr.canEntry
-      }
-
-      Kirigami.InlineMessage {
-        width: 300
-        text: i18n("All the possible entries are currently hidden as per this applet settings.")
-        type: Kirigami.MessageType.Warning
-        visible: !bootEntries.count > 0 && !plasmoid.configuration.showEfi && !plasmoid.configuration.showMenu
-      }
-
-
+        onClicked: bootMgr.bootEntry(cmd)
     }
+
+    ErrorMessage {
+      id: noEntriesMsg
+      sIcon: "dialog-warning-symbolic"
+      message: i18n("No boot entries could be listed.\nPlease check this applet settings.")
+      show: mainList.count == 0
+      // TODO: add open configuration button
+    }
+
+    // TODO: sections
+    /*section.property: "system"
+    section.delegate: Kirigami.ListSectionHeader {
+      width: parent.width
+      label: section == 1 ? "System entries" : "Custom entries"
+    }*/
+  }
 }

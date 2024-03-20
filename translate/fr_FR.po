@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-16 20:18+0100\n"
+"POT-Creation-Date: 2024-03-20 22:18+0100\n"
 "PO-Revision-Date: 2024-03-16 21:00+0100\n"
 "Last-Translator: Scias <khirac@proton.me>\n"
 "Language-Team: \n"
@@ -30,25 +30,36 @@ msgid "Show EFI entry"
 msgstr "Afficher option Menu EFI"
 
 #: ../contents/ui/FullRepresentation.qml
-msgid "Reboot to..."
-msgstr "Redémarrer vers..."
-
-#: ../contents/ui/FullRepresentation.qml
-msgid "Bootloader Menu"
-msgstr "Menu de Démarrage"
-
-#: ../contents/ui/FullRepresentation.qml
-msgid "EFI"
-msgstr "EFI"
+msgid "Reboot into..."
+msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
 "This applet cannot work on this system.\n"
-"Check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
+"Please check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
 msgstr ""
-"Cet applet ne peut pas fonctionner sur ce système.\n"
-"Vérifiez que le système est en mode UEFI et que systemd, systemd-boot soient bien utilisés et configurés."
 
 #: ../contents/ui/FullRepresentation.qml
-msgid "All the possible entries are currently hidden as per this applet settings."
-msgstr "Toutes les entrées sont cachées selon la configuration de cet applet."
+msgid ""
+"No boot entries could be listed.\n"
+"Please check this applet settings."
+msgstr ""
+
+#~ msgid "Reboot to..."
+#~ msgstr "Redémarrer vers..."
+
+#~ msgid "Bootloader Menu"
+#~ msgstr "Menu de Démarrage"
+
+#~ msgid "EFI"
+#~ msgstr "EFI"
+
+#~ msgid ""
+#~ "This applet cannot work on this system.\n"
+#~ "Check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
+#~ msgstr ""
+#~ "Cet applet ne peut pas fonctionner sur ce système.\n"
+#~ "Vérifiez que le système est en mode UEFI et que systemd, systemd-boot soient bien utilisés et configurés."
+
+#~ msgid "All the possible entries are currently hidden as per this applet settings."
+#~ msgstr "Toutes les entrées sont cachées selon la configuration de cet applet."

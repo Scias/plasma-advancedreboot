@@ -1,4 +1,4 @@
-# Translation of advancedreboot in LANGUAGE
+# Translation of advancedreboot in nl
 # Copyright (C) 2024
 # This file is distributed under the same license as the advancedreboot package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-16 20:18+0100\n"
+"POT-Creation-Date: 2024-03-20 22:18+0100\n"
 "PO-Revision-Date: 2024-03-17 12:39+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -30,31 +30,43 @@ msgid "Show EFI entry"
 msgstr "EFI in menu tonen"
 
 #: ../contents/ui/FullRepresentation.qml
-msgid "Reboot to..."
-msgstr "Herstarten naar…"
-
-#: ../contents/ui/FullRepresentation.qml
-msgid "Bootloader Menu"
-msgstr "Opstartmenu"
-
-#: ../contents/ui/FullRepresentation.qml
-msgid "EFI"
-msgstr "EFI"
+msgid "Reboot into..."
+msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
 "This applet cannot work on this system.\n"
-"Check that the system is booted in UEFI mode and that systemd, systemd-boot "
-"are used and configured properly."
+"Please check that the system is booted in UEFI mode and that systemd, "
+"systemd-boot are used and configured properly."
 msgstr ""
-"De widget werkt niet op dit systeem.\n"
-"Controleer of het systeem in UEFI-modus draait en of systemd en systemd-"
-"boot juist ingesteld zijn."
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
-"All the possible entries are currently hidden as per this applet settings."
-msgstr "Alle items zijn op basis van de widgetinstellingen verborgen."
+"No boot entries could be listed.\n"
+"Please check this applet settings."
+msgstr ""
+
+#~ msgid "Reboot to..."
+#~ msgstr "Herstarten naar…"
+
+#~ msgid "Bootloader Menu"
+#~ msgstr "Opstartmenu"
+
+#~ msgid "EFI"
+#~ msgstr "EFI"
+
+#~ msgid ""
+#~ "This applet cannot work on this system.\n"
+#~ "Check that the system is booted in UEFI mode and that systemd, systemd-"
+#~ "boot are used and configured properly."
+#~ msgstr ""
+#~ "De widget werkt niet op dit systeem.\n"
+#~ "Controleer of het systeem in UEFI-modus draait en of systemd en systemd-"
+#~ "boot juist ingesteld zijn."
+
+#~ msgid ""
+#~ "All the possible entries are currently hidden as per this applet settings."
+#~ msgstr "Alle items zijn op basis van de widgetinstellingen verborgen."
 
 #~ msgid "Show Windows entry"
 #~ msgstr "Windows in menu tonen"

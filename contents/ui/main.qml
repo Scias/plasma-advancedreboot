@@ -5,17 +5,19 @@ import org.kde.plasma.plasmoid
 PlasmoidItem {
   id: root
 
+  BootManager { id: bootMgr }
+
   preferredRepresentation: compactRepresentation
 
-  ListModel { id: bootEntries }
-  BootManager { id: bootmgr }
-
   compactRepresentation: CompactRepresentation { id: compact }
-  fullRepresentation: FullRepresentation { id: full }
+  fullRepresentation: FullRepresentation {
+    id: full
+    eligible: bootMgr.canEfi || bootMgr.canMenu || bootMgr.canEntry || bootMgr.bootEntries.count > 0
+  }
 
   Component.onCompleted: {
-    bootmgr.doChecks()
-    bootmgr.getEntries()
+    bootMgr.doChecks()
+    bootMgr.getEntries()
   }
 
 }

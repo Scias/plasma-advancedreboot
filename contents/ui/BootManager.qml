@@ -18,18 +18,24 @@ Item {
     readonly property string cmdCheckMenu: "CanRebootToBootLoaderMenu"
 
     readonly property var ignoreEntries: ["auto-reboot-to-firmware-setup"]
+    readonly property var systemEntries: ["auto-efi-shell", "bootloader-menu"]
 
     readonly property string defaultIcon: "image-rotate-right-symbolic"
-    readonly property var defaultIconMap: {
-        "windows" : "im-msn",
-        "osx" : "",
-        "memtest" : "show-gpu-effects",
-        "linux" : "preferences-system-linux"
+    readonly property var iconMap: {
+        "windows" : "windows",
+        "osx" : "apple",
+        "memtest" : "memtest",
+        "arch-linux" : "archlinux",
+        "firmware-setup" : "settings",
+        "efi-shell" : "shell",
+        "bootloader-menu" : "menu",
     }
 
-    property bool canEfi: false
     property bool canEntry: false
     property bool canMenu: false
+    property bool canEfi: false
+
+    property var bootEntries: ListModel { }
     
     SessionManagement {
         id: session
@@ -47,21 +53,27 @@ Item {
                 const rawEntries = JSON.parse(stdout)
                 for (const entry of rawEntries) {
                     if (!ignoreEntries.includes(entry.id)) {
-                        bootEntries.append(mapEntry(entry))
+                        bootEntries.append(mapEntry(entry.id, entry.showTitle))
                     }
                 }
             }
-            else if (cmd.includes(cmdCheckEfi)) {
-                if (stdout == "yes\n") canEfi = true
+            else {
+                if (cmd.includes(cmdCheckCustom)) {
+                    canEntry = true
+                }
+                else if (stdout == "yes\n") {
+                    if (cmd.includes(cmdCheckMenu)) {
+                        bootEntries.append(mapEntry("bootloader-menu", "Bootloader Menu"))
+                        canMenu = true
+                    }
+                    else if (cmd.includes(cmdCheckEfi)) {
+                        bootEntries.append(mapEntry("firmware-setup", "Firmware Interface"))
+                        canEfi = true
+                    }
+                }
             }
-            else if (cmd.includes(cmdCheckMenu)) {
-                if (stdout == "yes\n") canMenu = true
-            }
-            else if (cmd.includes(cmdCheckCustom)) {
-                if (stdout == "yes\n") canEntry = true
-            }
-
             disconnectSource(cmd)
+
         }
 
         function exec(cmd) {
@@ -70,25 +82,36 @@ Item {
 
     }
 
-    function mapEntry(entry) {
-        let icon = defaultIcon
-        for (const key in defaultIconMap) {
-            if (entry.id.includes(key)) {
-                icon = defaultIconMap[key]
+    function mapEntry(id, title) {
+        let bIcon = defaultIcon
+        let system = systemEntries.includes(id)
+        let cmd
+
+        if (id == "bootloader-menu") cmd = cmdSetMenu + " true"
+        else if (id == "firmware-setup") cmd = cmdSetEfi + " true"
+        else cmd = cmdSetEntry + " " + id
+
+        for (const key in iconMap) {
+            if (id.includes(key)) {
+                bIcon = Qt.resolvedUrl("../../assets/icons/" + iconMap[key] + ".svg")
                 break
             }
         }
+
         return ({
-            id: entry.id,
-            title: entry.title,
-            showTitle: entry.showTitle,
-            icon: icon,
+            id: id,
+            system: system,
+            title: title,
+            fullTitle: title,
+            bIcon: bIcon,
+            cmd: cmd,
+            enabled: true,
         })
+
     }
 
     function doChecks() {
-        // Check qdbus
-        // Check bootctl
+        // TODO: check qdbus/bootctl better and abort if not good
         executable.exec(cmdPre + cmdCheckEfi)
         executable.exec(cmdPre + cmdCheckMenu)
         executable.exec(cmdPre + cmdCheckCustom)
@@ -98,18 +121,8 @@ Item {
         executable.exec(cmdGetEntries)
     }
 
-    function bootToEfi() {
-        executable.exec(cmdPre + cmdSetEfi + " true")
-        session["requestReboot"](0)
-    }
-
-    function bootToMenu() {
-        executable.exec(cmdPre + cmdSetMenu + " 0")
-        session["requestReboot"](0)
-    }
-
-    function bootToEntry(entry) {
-        executable.exec(cmdPre + cmdSetEntry + " " + entry)
+    function bootEntry(cmdEnd) {
+        executable.exec(cmdPre + cmdEnd)
         session["requestReboot"](0)
     }
 

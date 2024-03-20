@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-16 20:18+0100\n"
+"POT-Creation-Date: 2024-03-20 22:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,23 +30,17 @@ msgid "Show EFI entry"
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
-msgid "Reboot to..."
-msgstr ""
-
-#: ../contents/ui/FullRepresentation.qml
-msgid "Bootloader Menu"
-msgstr ""
-
-#: ../contents/ui/FullRepresentation.qml
-msgid "EFI"
+msgid "Reboot into..."
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
 "This applet cannot work on this system.\n"
-"Check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
+"Please check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
-msgid "All the possible entries are currently hidden as per this applet settings."
+msgid ""
+"No boot entries could be listed.\n"
+"Please check this applet settings."
 msgstr ""
