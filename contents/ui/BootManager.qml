@@ -22,13 +22,21 @@ Item {
 
     readonly property string defaultIcon: "default"
     readonly property var iconMap: {
-        "windows" : "windows",
-        "osx" : "apple",
-        "memtest" : "memtest",
-        "arch-linux" : "archlinux",
-        "firmware-setup" : "settings",
-        "efi-shell" : "shell",
-        "bootloader-menu" : "menu",
+        "Firmware Setup" : "settings",
+        "Bootloader Menu" : "menu",
+        "Windows" : "windows",
+        "Mac OS" : "apple",
+        "Memtest" : "memtest",
+        "Arch Linux" : "archlinux",
+        "EFI Shell" : "shell",
+        "Fedora" : "fedora",
+        "Ubuntu" : "ubuntu",
+        "SUSE" : "suse",
+        "Debian" : "debian",
+        "Mint" : "mint",
+        "Gentoo" : "gentoo",
+        "Manjaro" : "manjaro",
+        "Linux" : "linux",
     }
 
     property bool canEntry: false
@@ -53,7 +61,7 @@ Item {
                 const rawEntries = JSON.parse(stdout)
                 for (const entry of rawEntries) {
                     if (!ignoreEntries.includes(entry.id)) {
-                        bootEntries.append(mapEntry(entry.id, entry.showTitle))
+                        bootEntries.append(mapEntry(entry.id, entry.title, entry.showTitle))
                     }
                 }
             }
@@ -63,11 +71,11 @@ Item {
                 }
                 else if (stdout == "yes\n") {
                     if (cmd.includes(cmdCheckMenu)) {
-                        bootEntries.append(mapEntry("bootloader-menu", "Bootloader Menu"))
+                        bootEntries.append(mapEntry("bootloader-menu", "Bootloader Menu", "Bootloader Menu"))
                         canMenu = true
                     }
                     else if (cmd.includes(cmdCheckEfi)) {
-                        bootEntries.append(mapEntry("firmware-setup", "Firmware Interface"))
+                        bootEntries.append(mapEntry("firmware-setup", "Firmware Setup", "Firmware Setup"))
                         canEfi = true
                     }
                 }
@@ -82,7 +90,7 @@ Item {
 
     }
 
-    function mapEntry(id, title) {
+    function mapEntry(id, title, fullTitle) {
         let bIcon = defaultIcon
         let system = systemEntries.includes(id)
         let cmd
@@ -92,7 +100,7 @@ Item {
         else cmd = cmdSetEntry + " " + id
 
         for (const key in iconMap) {
-            if (id.includes(key)) {
+            if (title.includes(key)) {
                 bIcon = iconMap[key]
                 break
             }
@@ -102,7 +110,7 @@ Item {
             id: id,
             system: system,
             title: title,
-            fullTitle: title,
+            fullTitle: fullTitle,
             bIcon: Qt.resolvedUrl("../../assets/icons/" + bIcon + ".svg"),
             cmd: cmd,
             enabled: true,
