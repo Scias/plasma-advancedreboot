@@ -20,7 +20,7 @@ Item {
     readonly property var ignoreEntries: ["auto-reboot-to-firmware-setup"]
     readonly property var systemEntries: ["auto-efi-shell", "bootloader-menu"]
 
-    readonly property string defaultIcon: "image-rotate-right-symbolic"
+    readonly property string defaultIcon: "default"
     readonly property var iconMap: {
         "windows" : "windows",
         "osx" : "apple",
@@ -93,7 +93,7 @@ Item {
 
         for (const key in iconMap) {
             if (id.includes(key)) {
-                bIcon = Qt.resolvedUrl("../../assets/icons/" + iconMap[key] + ".svg")
+                bIcon = iconMap[key]
                 break
             }
         }
@@ -103,7 +103,7 @@ Item {
             system: system,
             title: title,
             fullTitle: title,
-            bIcon: bIcon,
+            bIcon: Qt.resolvedUrl("../../assets/icons/" + bIcon + ".svg"),
             cmd: cmd,
             enabled: true,
         })
