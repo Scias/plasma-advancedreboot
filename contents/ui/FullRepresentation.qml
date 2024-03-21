@@ -79,6 +79,7 @@ PlasmaExtras.Representation {
       message: i18n("No boot entries could be listed.\nPlease check this applet settings.")
       show: mainList.count == 0
       // TODO: add open configuration button
+      //plasmoid.action("configure").trigger()
     }
 
     // TODO: sections

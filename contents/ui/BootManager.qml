@@ -7,6 +7,7 @@ Item {
 
     readonly property string cmdGetEntries: "bootctl list --json=short"
 
+    // TODO: Use busctl instead of qdbus
     readonly property string cmdPre: "qdbus6 --system org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager."
 
     readonly property string cmdSetEfi: "SetRebootToFirmwareSetup"

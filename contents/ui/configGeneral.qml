@@ -8,19 +8,24 @@ import org.kde.kcmutils
 SimpleKCM {
   id: mainconfig
 
-  property alias cfg_showMenu: menu.checked
-  property alias cfg_showEfi: efi.checked
+  //property alias cfg_hiddenEntries: menu.checked
+  //property alias cfg_showEfi: efi.checked
 
-  Kirigami.FormLayout {
+  BootManager { id: bootMgr }
+
+  PlasmaComponents.ScrollView {
     anchors.fill: parent
+    focus: true
 
-    PlasmaComponents.Switch {
-      id: menu
-      Kirigami.FormData.label: i18n("Show Bootloader Menu entry")
-    }
-    PlasmaComponents.Switch {
-      id: efi
-      Kirigami.FormData.label: i18n("Show EFI entry")
-    }
+    ListView {
+                model: bootMgr.bootEntries
+                delegate: Controls.SwitchDelegate {
+                  required property string fullTitle
+                    width: ListView.view.width - ListView.view.leftMargin - ListView.view.rightMargin
+                    text: fullTitle + modelData
+                }
+            }
+
+
   }
 }
