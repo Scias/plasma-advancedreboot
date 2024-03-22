@@ -16,6 +16,7 @@ PlasmoidItem {
   }
 
   Component.onCompleted: {
+    plasmoid.configuration.allEntries = []
     bootMgr.doChecks()
     bootMgr.getEntries()
   }

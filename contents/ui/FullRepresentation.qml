@@ -4,10 +4,15 @@ import QtQuick.Layouts 1.15
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.extras as PlasmaExtras
 import org.kde.kirigami 2.20 as Kirigami
+import org.kde.notification
 
 PlasmaExtras.Representation {
 
   property bool eligible: false
+
+  property var displayEntries: ListModel { }
+  property var selectedEntry
+  property bool ready: false
 
   implicitWidth: Kirigami.Units.gridUnit * 20
   implicitHeight: (eligible ? mainList.height : notEligibleMsg.height) + header.height + Kirigami.Units.largeSpacing
@@ -42,11 +47,11 @@ PlasmaExtras.Representation {
       interactive: false
 
       width: parent.width
-      height: bootMgr.bootEntries.count > 0 ? contentHeight : noEntriesMsg.height
+      height: displayEntries.count > 0 ? contentHeight : noEntriesMsg.height
 
       spacing: Kirigami.Units.smallSpacing
 
-      model: bootMgr.bootEntries
+      model: displayEntries
 
       delegate: PlasmaComponents.ItemDelegate {
         required property string cmd
@@ -70,7 +75,12 @@ PlasmaExtras.Representation {
             text: fullTitle
           }
         }
-        onClicked: bootMgr.bootEntry(cmd)
+        onClicked: {
+          root.expanded = !root.expanded
+          selectedEntry = fullTitle
+          myNotif.sendEvent()
+          bootMgr.bootEntry(cmd)
+        }
     }
 
     ErrorMessage {
@@ -88,5 +98,43 @@ PlasmaExtras.Representation {
       width: parent.width
       label: section == 1 ? "System entries" : "Custom entries"
     }*/
+
   }
+
+  Notification {
+    id: myNotif
+    componentName: "plasma_workspace"
+    eventId: "warning"
+    title: i18n("Advanced reboot")
+    text: i18n("The entry <b>") + selectedEntry + i18n("</b> has been set for the next reboot.")
+    iconName: "refreshstructure"
+  }
+
+  function buildModel(toHide, model) {
+    // TODO: Performance - make atomic model update
+    displayEntries.clear()
+    for (let i = 0; i < model.count; i++) {
+      if (!toHide.includes(model.get(i).fullTitle)) {
+        displayEntries.append(model.get(i))
+      }
+    }
+    if (!ready) ready = true
+  }
+
+  Component.onCompleted: {
+    // BUG: Try to avoid an unecessary extra update because of race condition with onvaluechanged
+    if (!ready) buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
+  }
+
+  Connections {
+    target: plasmoid.configuration
+
+    function onValueChanged(value) {
+      // BUG: Avoiding unecessary extra updates sometimes leaves the ListView empty...
+      //if (value == "hideEntries") {
+      buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
+      //}
+    }
+  }
+
 }

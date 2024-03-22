@@ -108,6 +108,11 @@ Item {
             }
         }
 
+        // TODO: figure out why push method doesn't work on the plasmoid.configuration item
+        let tmpList = plasmoid.configuration.allEntries
+        tmpList.push(fullTitle)
+        plasmoid.configuration.allEntries = tmpList
+
         return ({
             id: id,
             system: system,
@@ -121,7 +126,7 @@ Item {
     }
 
     function doChecks() {
-        // TODO: check qdbus/bootctl better and abort if not good
+        // TODO: check busctl/bootctl better and abort if not good
         executable.exec(cmdPre + cmdCheckEfi)
         executable.exec(cmdPre + cmdCheckMenu)
         executable.exec(cmdPre + cmdCheckCustom)
@@ -133,7 +138,10 @@ Item {
 
     function bootEntry(cmdEnd) {
         executable.exec(cmdPre + cmdEnd)
-        session["requestReboot"](0)
+        let mode = plasmoid.configuration.rebootMode
+        if (mode === 0 || mode === 1) {
+            session["requestReboot"](mode)
+        }
     }
 
 

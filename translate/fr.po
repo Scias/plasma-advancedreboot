@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-20 22:18+0100\n"
+"POT-Creation-Date: 2024-03-22 03:24+0100\n"
 "PO-Revision-Date: 2024-03-16 21:00+0100\n"
 "Last-Translator: Scias <khirac@proton.me>\n"
 "Language-Team: \n"
@@ -22,12 +22,30 @@ msgid "General"
 msgstr "Général"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Show Bootloader Menu entry"
-msgstr "Afficher option Menu de Démarrage"
+msgid "Displayed boot entries in the plasmoid view"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Show EFI entry"
-msgstr "Afficher option Menu EFI"
+msgid "Behavior upon selecting an entry :"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Reboot immediately"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Reboot after confirmation"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Don't reboot"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"No boot entries could be found.\n"
+"Please check that your system meets the requirements."
+msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Reboot into..."
@@ -48,6 +66,24 @@ msgid ""
 msgstr ""
 "Aucune entrée de démarrage ne peut être listée.\n"
 "Merci de vérifier les paramètres de cet applet."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Advanced reboot"
+msgstr ""
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "The entry <b>"
+msgstr ""
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "</b> has been set for the next reboot."
+msgstr ""
+
+#~ msgid "Show Bootloader Menu entry"
+#~ msgstr "Afficher option Menu de Démarrage"
+
+#~ msgid "Show EFI entry"
+#~ msgstr "Afficher option Menu EFI"
 
 #~ msgid "Reboot to..."
 #~ msgstr "Redémarrer vers..."

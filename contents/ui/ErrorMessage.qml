@@ -8,6 +8,7 @@ Item {
     property bool show: false
     property string sIcon
     property string message
+    //property var action: null
 
     implicitWidth: parent.width
     implicitHeight: err.implicitHeight + Kirigami.Units.largeSpacing * 2
@@ -24,8 +25,7 @@ Item {
         icon.name: sIcon
         text: message
         visible: show
-
-        // TODO: add configuration button
-        //helpfulAction:
+        //TODO: Configure button - Help link
+        //helpfulAction: action
     }
 }

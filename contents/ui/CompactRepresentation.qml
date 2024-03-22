@@ -22,7 +22,6 @@ Item {
       id: mouseArea
       anchors.fill: parent
       hoverEnabled: true
-      //onPressed: root.expanded = !root.expanded
       onClicked: root.expanded = !root.expanded
     }
   }

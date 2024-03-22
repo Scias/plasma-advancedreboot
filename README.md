@@ -13,22 +13,25 @@ This allows you to quickly reboot into Windows, the EFI or bootloader menu, othe
 
 ## Roadmap / TODO
 
-- [ ] Better appearance
+- [ ] Improve the look
 - [X] Translation support
 - [X] Custom icons
 - [X] Detect if requirements are really met and warn the user/disable the feature if not
 - [X] Dynamically get and list all the bootloader entries
-- [ ] Ability to tweak visibility of every entry
+- [X] Ability to tweak visibility of every entry
 - [ ] Show which entry is currently the active one
-- [ ] Ability to just set the flag without rebooting immediately (and show which entry is set)
+- [ ] Show which entry has been set for next boot
+- [X] Ability to just set the flag without rebooting immediately
+- [ ] Better error detection and reporting
+- [ ] Allow customisation of entry names, logos and order
 
 ## Tested on
 
-✅ **Archlinux** - Works out of the box
-🟨 **Endeavour OS** - See Troubleshooting #1
-🟨 **Fedora** - See Troubleshooting #1
-🟨 **Ubuntu / Mint** - See Troubleshooting #1
-🚫 **OpenSUSE** - See Troubleshooting #2
+- ✅ **Archlinux** - Works out of the box
+- 🟨 **Endeavour OS** - See Troubleshooting #1
+- 🟨 **Fedora** - See Troubleshooting #1
+- 🟨 **Ubuntu / Mint** - See Troubleshooting #1
+- 🚫 **OpenSUSE** - See Troubleshooting #2
 
 ## Translations
 
@@ -39,7 +42,6 @@ If you wish to contribute your own translation, a template.pot file is available
 
 ## Bugs
 
-- If the reboot is cancelled (because of inhibitors or open documents), the flags remain set. This means next reboot will still honor the choice made previously.
 - This will not work if sudo/root is needed for dbus or bootctl interaction. (eg: OpenSUSE)
 
 ## Troubleshooting
@@ -57,7 +59,7 @@ Edit the fmask and dmask values to 0022 so that the line looks like this:
 ```
 UUID=xxxxx  /efi   vfat    ...,fmask=0022,dmask=0022,...
 ```
-Reboot or remount the partition.
+Then reboot or remount the partition.
 
 **2. The logind D-Bus methods must be user-accessible**
 
