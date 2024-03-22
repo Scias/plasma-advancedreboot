@@ -6,8 +6,8 @@ This allows you to quickly reboot into Windows, the EFI or bootloader menu, othe
 ## Requirements
 
 - UEFI system only
+- systemd >= 251
 - systemd-boot (bootctl) bootloader
-- systemd & logind
 
 **Other bootloaders (GRUB/rEFInd...) and non-systemd systems are NOT supported!**
 
@@ -27,10 +27,10 @@ This allows you to quickly reboot into Windows, the EFI or bootloader menu, othe
 
 ## Tested on
 
-- ✅ **Archlinux** - Works out of the box
+- ✅ **Archlinux** - Should work out of the box
 - 🟨 **Endeavour OS** - See Troubleshooting #1
-- 🟨 **Fedora** - See Troubleshooting #1
-- 🟨 **Ubuntu / Mint** - See Troubleshooting #1
+- 🚫 **Fedora KDE (Rawhide)** - Planned fix in 0.41. Workaround: `ln -s /usr/bin/qtbus-qt6 /usr/bin/qdbus6` + See Troubleshooting #1
+- 🚫 **KDE Neon (Ubuntu 22.04)** - systemd/bootctl version is too old
 - 🚫 **OpenSUSE** - See Troubleshooting #2
 
 ## Translations
@@ -52,7 +52,7 @@ If despite meeting the above requirements :
 - No entries are listed (applet can't work error) : Check point 1 below.
 - Entries are listed but it doesn't reboot to the chosen entry (reboots normally instead) : Check point 2 below
 
-**1. The ESP (/boot/efi or /efi) must be user-readable.**
+**1. The ESP (/boot/efi or /efi) must be user-accessible.**
 
 To check this, run "bootctl list" as the user. If you get a permissions error, you have to edit your ESP's fstab options line in /etc/fstab.
 Edit the fmask and dmask values to 0022 so that the line looks like this:
