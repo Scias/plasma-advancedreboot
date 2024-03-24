@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
 "POT-Creation-Date: 2024-03-22 13:18+0100\n"
-"PO-Revision-Date: 2024-03-17 12:39+0100\n"
+"PO-Revision-Date: 2024-03-24 12:49+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -23,33 +23,35 @@ msgstr "Algemeen"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Displayed boot entries in the plasmoid view"
-msgstr ""
+msgstr "Getoonde opstartitems op widget"
 
 #: ../contents/ui/configGeneral.qml
 msgid ""
 "No boot entries could be found.\n"
 "Please check that your system meets the requirements."
 msgstr ""
+"Er zijn geen opstartitems aangetroffen.\n"
+"Controleer of je systeem aan de vereisten voldoet."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Behavior upon selecting an entry :"
-msgstr ""
+msgstr "Actie na aanklikken van item:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Reboot immediately"
-msgstr ""
+msgstr "Onmiddellijk herstarten"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Reboot after confirmation"
-msgstr ""
+msgstr "Om bevestiging vragen"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Don't reboot"
-msgstr ""
+msgstr "Niet herstarten"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Reboot into..."
-msgstr ""
+msgstr "Herstarten naar…"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
@@ -57,24 +59,29 @@ msgid ""
 "Please check that the system is booted in UEFI mode and that systemd, "
 "systemd-boot are used and configured properly."
 msgstr ""
+"Deze widget werkt niet op dit systeem.\n"
+"Controleer of het systeem is opgestart in uefi-modus en dat systemd en "
+"systemd-boot actief en juist ingesteld zijn."
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
 "No boot entries could be listed.\n"
 "Please check this applet settings."
 msgstr ""
+"Er zijn opstartitems.\n"
+"Controleer de widgetinstellingen."
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Advanced reboot"
-msgstr ""
+msgstr "Geavanceerd"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "The entry <b>"
-msgstr ""
+msgstr "<b>"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "</b> has been set for the next reboot."
-msgstr ""
+msgstr "</b> zal bij de volgende herstart worden gebruikt."
 
 #~ msgid "Show Bootloader Menu entry"
 #~ msgstr "Opstartmenu-item tonen"
