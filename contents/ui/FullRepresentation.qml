@@ -96,7 +96,7 @@ PlasmaExtras.Representation {
       implicitWidth: 150
       implicitHeight: 150
       anchors.centerIn: parent
-      visible: bootMgr.state == 0 || !ready
+      visible: bootMgr.state == 0 && !ready
     }
 
     ErrorMessage {
@@ -130,9 +130,8 @@ PlasmaExtras.Representation {
   }
 
   Component.onCompleted: {
-    if (bootMgr.state == 1) { 
+    if (bootMgr.state === 1) { 
       buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
-      console.log("complete")
     }
   }
 
@@ -140,16 +139,13 @@ PlasmaExtras.Representation {
     target: bootMgr
 
     function onLoaded(signal) {
-      console.log("pre loaded")
-      if (signal == 1 && !ready) { 
+      if (signal === 1) { 
         buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
-        console.log("signal loaded")
       }
     }
     
     function onConfChanged() {
       buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
-      console.log("signal changed")
     }
   }
 

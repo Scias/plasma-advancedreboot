@@ -13,7 +13,7 @@ This allows you to quickly reboot into Windows, the EFI or bootloader menu, othe
 
 ## Roadmap / TODO
 
-- [ ] Improve the look
+- [ ] Improve look and feel
 - [X] Translation support
 - [X] Custom icons
 - [X] Detect if requirements are really met and warn the user/disable the feature if not
@@ -21,6 +21,7 @@ This allows you to quickly reboot into Windows, the EFI or bootloader menu, othe
 - [X] Ability to tweak visibility of every entry
 - [ ] Show which entry is currently the active one
 - [ ] Show which entry has been set for next boot
+- [ ] Show detailed entry info/metadata
 - [X] Ability to just set the flag without rebooting immediately
 - [ ] Better error detection and reporting
 - [ ] Allow customisation of entry names, logos and order
@@ -29,7 +30,7 @@ This allows you to quickly reboot into Windows, the EFI or bootloader menu, othe
 
 - ✅ **Archlinux** - Should work out of the box
 - 🟨 **Endeavour OS** - See Troubleshooting #1
-- 🚫 **Fedora KDE (Rawhide)** - Planned fix in 0.41. Workaround: `ln -s /usr/bin/qtbus-qt6 /usr/bin/qdbus6` + See Troubleshooting #1
+- 🟨 **Fedora KDE (Rawhide)** - See Troubleshooting #1
 - 🚫 **KDE Neon (Ubuntu 22.04)** - systemd/bootctl version is too old
 - 🚫 **OpenSUSE** - See Troubleshooting #2
 

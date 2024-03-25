@@ -126,7 +126,6 @@ Item {
 
         function exec(cmd) {
             if (cmd) connectSource(cmd)
-            console.log(cmd)
         }
 
     }

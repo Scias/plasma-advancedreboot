@@ -11,6 +11,7 @@ Item {
     //property var action: null
 
     implicitWidth: parent.width
+    implicitHeight: parent.height
 
     Kirigami.PlaceholderMessage {
         id: err
