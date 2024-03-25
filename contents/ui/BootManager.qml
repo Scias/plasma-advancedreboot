@@ -126,6 +126,7 @@ Item {
 
         function exec(cmd) {
             if (cmd) connectSource(cmd)
+            console.log(cmd)
         }
 
     }
@@ -178,8 +179,8 @@ Item {
         executable.exec(cmdGetEntries)
     }
 
-    function bootEntry(cmdEnd) {
-        executable.exec(cmdDbusPre + cmdEnd)
+    function bootEntry(cmd) {
+        executable.exec(cmd)
         let mode = plasmoid.configuration.rebootMode
         if (mode === 0 || mode === 1) {
             session["requestReboot"](mode)
@@ -188,11 +189,13 @@ Item {
 
     signal loaded(int state)
 
+    signal confChanged()
+
     Connections {
         target: plasmoid.configuration
 
         function onValueChanged(value) {
-          if (state == 1 && value == "hideEntries") loaded(state)
+         if (state === 1 && value == "hideEntries") confChanged()
         }
     }
 

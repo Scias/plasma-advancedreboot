@@ -129,11 +129,27 @@ PlasmaExtras.Representation {
     ready = true
   }
 
+  Component.onCompleted: {
+    if (bootMgr.state == 1) { 
+      buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
+      console.log("complete")
+    }
+  }
+
   Connections {
     target: bootMgr
 
     function onLoaded(signal) {
-      if (signal == 1) buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
+      console.log("pre loaded")
+      if (signal == 1 && !ready) { 
+        buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
+        console.log("signal loaded")
+      }
+    }
+    
+    function onConfChanged() {
+      buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
+      console.log("signal changed")
     }
   }
 
