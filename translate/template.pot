@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-22 13:18+0100\n"
+"POT-Creation-Date: 2024-03-25 04:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,14 @@ msgstr ""
 
 #: ../contents/config/config.qml
 msgid "General"
+msgstr ""
+
+#: ../contents/ui/BootManager.qml
+msgid "Bootloader Menu"
+msgstr ""
+
+#: ../contents/ui/BootManager.qml
+msgid "Firmware Setup"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
@@ -53,14 +61,14 @@ msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
-"This applet cannot work on this system.\n"
-"Please check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
+"No boot entries could be listed.\n"
+"Please check this applet settings."
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
-"No boot entries could be listed.\n"
-"Please check this applet settings."
+"This applet cannot work on this system.\n"
+"Please check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml

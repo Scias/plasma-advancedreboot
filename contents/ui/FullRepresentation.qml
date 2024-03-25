@@ -10,14 +10,12 @@ import org.kde.notification
 // TODO: Put stuff inside parenthesis / kernel versions in a separate line below
 PlasmaExtras.Representation {
 
-  property bool eligible: false
-
-  property var displayEntries: ListModel { }
+  property var shownEntries: ListModel { }
   property var selectedEntry
   property bool ready: false
 
   implicitWidth: Kirigami.Units.gridUnit * 20
-  implicitHeight: (eligible ? mainList.height : notEligibleMsg.height) + header.height + Kirigami.Units.largeSpacing
+  implicitHeight: mainList.height + header.height + Kirigami.Units.largeSpacing
 
   Layout.preferredWidth: implicitWidth
   Layout.minimumWidth: implicitWidth
@@ -25,41 +23,33 @@ PlasmaExtras.Representation {
   Layout.maximumHeight: implicitHeight
   Layout.minimumHeight: implicitHeight
 
-    header: PlasmaExtras.PlasmoidHeading {
-      contentItem: Kirigami.Heading {
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        text: i18n("Reboot into...")
-      }
+  header: PlasmaExtras.PlasmoidHeading {
+    contentItem: Kirigami.Heading {
+      horizontalAlignment: Text.AlignHCenter
+      verticalAlignment: Text.AlignVCenter
+      text: i18n("Reboot into...")
     }
-
-    ErrorMessage {
-      id: notEligibleMsg
-      sIcon: "dialog-error-symbolic"
-      message: i18n("This applet cannot work on this system.\nPlease check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly.")
-      show: !eligible
-    }
+  }
 
     ListView {
       id: mainList
-      visible: eligible
 
       anchors.verticalCenter: parent.verticalCenter
 
       interactive: false
 
       width: parent.width
-      height: displayEntries.count > 0 ? contentHeight : noEntriesMsg.height
+      height: shownEntries.count > 0 ? contentHeight : 300
 
       spacing: Kirigami.Units.smallSpacing
 
-      model: displayEntries
+      model: shownEntries
 
       delegate: PlasmaComponents.ItemDelegate {
         required property string cmd
         required property string bIcon
         required property string fullTitle
-        width: parent.width
+        width: parent ? parent.width : 0 // BUG: Occasional error here
         contentItem: RowLayout {
 
           Layout.fillWidth: true
@@ -85,21 +75,37 @@ PlasmaExtras.Representation {
         }
     }
 
-    ErrorMessage {
-      id: noEntriesMsg
-      sIcon: "dialog-warning-symbolic"
-      message: i18n("No boot entries could be listed.\nPlease check this applet settings.")
-      show: mainList.count == 0
-      // TODO: add open configuration button
-      //plasmoid.action("configure").trigger()
-    }
-
     // TODO: sections
     /*section.property: "system"
     section.delegate: Kirigami.ListSectionHeader {
       width: parent.width
       label: section == 1 ? "System entries" : "Custom entries"
     }*/
+
+    ErrorMessage {
+      id: noEntriesMsg
+      anchors.centerIn: parent
+      sIcon: "dialog-warning-symbolic"
+      message: i18n("No boot entries could be listed.\nPlease check this applet settings.")
+      show: ready && shownEntries.count == 0
+      // TODO: add open configuration button
+      //plasmoid.action("configure").trigger()
+    }
+
+    PlasmaComponents.BusyIndicator {
+      implicitWidth: 150
+      implicitHeight: 150
+      anchors.centerIn: parent
+      visible: bootMgr.state == 0 || !ready
+    }
+
+    ErrorMessage {
+      id: notEligibleMsg
+      anchors.centerIn: parent
+      sIcon: "dialog-error-symbolic"
+      message: i18n("This applet cannot work on this system.\nPlease check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly.")
+      show: bootMgr.state == 2
+    }
 
   }
 
@@ -114,28 +120,20 @@ PlasmaExtras.Representation {
 
   function buildModel(toHide, model) {
     // TODO: Performance - make atomic model update
-    displayEntries.clear()
+    shownEntries.clear()
     for (let i = 0; i < model.count; i++) {
       if (!toHide.includes(model.get(i).fullTitle)) {
-        displayEntries.append(model.get(i))
+        shownEntries.append(model.get(i))
       }
     }
-    if (!ready) ready = true
-  }
-
-  Component.onCompleted: {
-    // BUG: Try to avoid an unecessary extra update because of race condition with onvaluechanged
-    if (!ready) buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
+    ready = true
   }
 
   Connections {
-    target: plasmoid.configuration
+    target: bootMgr
 
-    function onValueChanged(value) {
-      // BUG: Avoiding unecessary extra updates sometimes leaves the ListView empty...
-      //if (value == "hideEntries") {
-      buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
-      //}
+    function onLoaded(signal) {
+      if (signal == 1) buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
     }
   }
 

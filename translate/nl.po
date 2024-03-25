@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-22 13:18+0100\n"
+"POT-Creation-Date: 2024-03-25 04:31+0100\n"
 "PO-Revision-Date: 2024-03-24 12:49+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -20,6 +20,14 @@ msgstr ""
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "Algemeen"
+
+#: ../contents/ui/BootManager.qml
+msgid "Bootloader Menu"
+msgstr "Opstartmenu"
+
+#: ../contents/ui/BootManager.qml
+msgid "Firmware Setup"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Displayed boot entries in the plasmoid view"
@@ -55,6 +63,14 @@ msgstr "Herstarten naar…"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
+"No boot entries could be listed.\n"
+"Please check this applet settings."
+msgstr ""
+"Er zijn opstartitems.\n"
+"Controleer de widgetinstellingen."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid ""
 "This applet cannot work on this system.\n"
 "Please check that the system is booted in UEFI mode and that systemd, "
 "systemd-boot are used and configured properly."
@@ -62,14 +78,6 @@ msgstr ""
 "Deze widget werkt niet op dit systeem.\n"
 "Controleer of het systeem is opgestart in uefi-modus en dat systemd en "
 "systemd-boot actief en juist ingesteld zijn."
-
-#: ../contents/ui/FullRepresentation.qml
-msgid ""
-"No boot entries could be listed.\n"
-"Please check this applet settings."
-msgstr ""
-"Er zijn opstartitems.\n"
-"Controleer de widgetinstellingen."
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Advanced reboot"
@@ -91,9 +99,6 @@ msgstr "</b> zal bij de volgende herstart worden gebruikt."
 
 #~ msgid "Reboot to..."
 #~ msgstr "Herstarten naar…"
-
-#~ msgid "Bootloader Menu"
-#~ msgstr "Opstartmenu"
 
 #~ msgid "EFI"
 #~ msgstr "EFI"
