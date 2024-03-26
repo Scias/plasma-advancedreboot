@@ -12,7 +12,6 @@ PlasmaExtras.Representation {
 
   property var shownEntries: ListModel { }
   property var selectedEntry
-  property bool ready: false
 
   implicitWidth: Kirigami.Units.gridUnit * 20
   implicitHeight: mainList.height + header.height + Kirigami.Units.largeSpacing
@@ -87,7 +86,7 @@ PlasmaExtras.Representation {
       anchors.centerIn: parent
       sIcon: "dialog-warning-symbolic"
       message: i18n("No boot entries could be listed.\nPlease check this applet settings.")
-      show: ready && shownEntries.count == 0
+      show: bootMgr.step === BootManager.Ready && shownEntries.count == 0
       // TODO: add open configuration button
       //plasmoid.action("configure").trigger()
     }
@@ -96,7 +95,7 @@ PlasmaExtras.Representation {
       implicitWidth: 150
       implicitHeight: 150
       anchors.centerIn: parent
-      visible: bootMgr.state == 0 && !ready
+      visible: bootMgr.step < BootManager.Ready
     }
 
     ErrorMessage {
@@ -104,7 +103,7 @@ PlasmaExtras.Representation {
       anchors.centerIn: parent
       sIcon: "dialog-error-symbolic"
       message: i18n("This applet cannot work on this system.\nPlease check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly.")
-      show: bootMgr.state == 2
+      show: bootMgr.step === BootManager.Error
     }
 
   }
@@ -126,11 +125,10 @@ PlasmaExtras.Representation {
         shownEntries.append(model.get(i))
       }
     }
-    ready = true
   }
 
   Component.onCompleted: {
-    if (bootMgr.state === 1) { 
+    if (bootMgr.step === BootManager.Ready) { 
       buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
     }
   }
@@ -139,7 +137,7 @@ PlasmaExtras.Representation {
     target: bootMgr
 
     function onLoaded(signal) {
-      if (signal === 1) { 
+      if (signal === BootManager.Ready) { 
         buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
       }
     }

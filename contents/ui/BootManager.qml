@@ -11,10 +11,12 @@ Item {
 
     readonly property int minVersion: 251 // Minimum systemd version required
     readonly property string cmdDbusPre: "busctl"
+    readonly property string cmdSdboot: "bootctl"
     readonly property string cmdDbusCheck: cmdDbusPre + " --version"
+    readonly property string cmdSdbootCheck: cmdSdboot + " --version"
     readonly property string cmdDbusPath: "org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager"
 
-    readonly property string cmdGetEntries: "bootctl list --json=short --no-pager"
+    readonly property string cmdGetEntries: cmdSdboot + " list --json=short --no-pager"
 
     readonly property string cmdCheckEfi: cmdDbusPre + " call " + cmdDbusPath + " CanRebootToFirmwareSetup --json=short"
     readonly property string cmdCheckCustom: cmdDbusPre + " call " + cmdDbusPath + " CanRebootToBootLoaderEntry --json=short"
@@ -25,7 +27,8 @@ Item {
     readonly property string cmdSetEntry: cmdDbusPre + " call " + cmdDbusPath + " SetRebootToBootLoaderEntry s "
 
     readonly property var ignoreEntries: ["auto-reboot-to-firmware-setup"]
-    readonly property var systemEntries: ["auto-efi-shell", "bootloader-menu"]
+    //TODO: sections
+    //readonly property var systemEntries: ["auto-efi-shell", "bootloader-menu"]
 
     readonly property string defaultIcon: "default"
     readonly property var iconMap: {
@@ -47,10 +50,20 @@ Item {
         "Linux" : "linux",
     }
 
+    property var busctlOK: null
+    property var bootctlOK: null
+    property int sdVersion
     property var canEntry: null
     property var canMenu: null
     property var canEfi: null
-    property int state: 0 // 0: loading / 1: ready / 2: error
+
+    enum State {
+        ReqPass,
+        GotEntries,
+        Ready,
+        Error
+    }
+    property int step: -1
 
     // TODO: Optimisation: use a temporary model
     property var bootEntries: ListModel { }
@@ -73,30 +86,25 @@ Item {
             if (cmd == cmdDbusCheck) {
                 if (stdout && !stderr) {
                     const resp = stdout.split(" ")
-                    if (parseInt(resp[1]) >= minVersion) {
-                        getAbilities()
-                    }
-                    else {
-                        state = 2
-                        return
-                    }
-                }
-                else {
-                    state = 2
-                    return
-                }
+                    busctlOK = parseInt(resp[1]) >= minVersion
+                } else busctlOK = false
+            }
+            else if (cmd == cmdSdbootCheck) {
+                // Assume bootctl version == busctl version
+                bootctlOK = !stderr
             }
             else {
                 let json
                 try { json = JSON.parse(stdout) }
                 catch (err) {
                     // TODO 0.45 : Get and report the error
-                    return
+                    // return
                 }
                 switch(cmd) {
                     case cmdCheckCustom:
                         canEntry = json.data == "yes"
                         if (canEntry) getEntries()
+                        else step = BootManager.GotEntries
                         break
                     case cmdCheckMenu:
                         canMenu = json.data == "yes"
@@ -112,14 +120,25 @@ Item {
                                 bootEntries.append(mapEntry(entry.id, entry.title, entry.showTitle))
                             }
                         }
+                        step = BootManager.GotEntries
                         break
-                    }
                 }
+            }
 
-            if (canEntry !== null && canEfi !== null && canMenu !== null) {
-                state = (canEntry || canEfi || canMenu) ? 1 : 2
-                loaded(state)
+            if (step === BootManager.GotEntries && canEntry !== null && canEfi !== null && canMenu !== null) {
+                step = (canEntry || canEfi || canMenu) ? BootManager.Ready : BootManager.Error
+                loaded(step)
                 // TODO: Save all entries in configuration once ready
+            }
+
+            if (step === -1) {
+                if (busctlOK && bootctlOK) {
+                    step = BootManager.ReqPass
+                    getAbilities()
+                }
+                else if (busctlOK === false || bootctlOK === false) {
+                    step = BootManager.Error
+                }
             }
 
         }
@@ -132,7 +151,7 @@ Item {
 
     function mapEntry(id, title, fullTitle) {
         let bIcon = defaultIcon
-        let system = systemEntries.includes(id)
+        //let system = systemEntries.includes(id)
         let cmd
 
         if (id == "bootloader-menu") cmd = cmdSetMenu
@@ -153,7 +172,7 @@ Item {
 
         return ({
             id: id,
-            system: system,
+            //system: system,
             title: title,
             fullTitle: fullTitle,
             bIcon: Qt.resolvedUrl("../../assets/icons/" + bIcon + ".svg"),
@@ -165,7 +184,8 @@ Item {
 
     function initialize() {
         plasmoid.configuration.allEntries = []
-        executable.exec(cmdDbusPre + " --version")
+        executable.exec(cmdDbusCheck)
+        executable.exec(cmdSdbootCheck)
     }
 
     function getAbilities() {
@@ -186,7 +206,7 @@ Item {
         }
     }
 
-    signal loaded(int state)
+    signal loaded(int step)
 
     signal confChanged()
 
@@ -194,7 +214,7 @@ Item {
         target: plasmoid.configuration
 
         function onValueChanged(value) {
-         if (state === 1 && value == "hideEntries") confChanged()
+         if (step === BootManager.Ready && value == "hideEntries") confChanged()
         }
     }
 
