@@ -23,7 +23,7 @@ msgstr "Général"
 
 #: ../contents/config/config.qml
 msgid "Debug information"
-msgstr ""
+msgstr "Informations de débogage"
 
 #: ../contents/ui/BootManager.qml
 msgid "Bootloader Menu"
@@ -63,27 +63,27 @@ msgstr "Ne pas redémarrer"
 
 #: ../contents/ui/configInfo.qml
 msgid "systemd is at version 251 or above"
-msgstr ""
+msgstr "systemd est au moins version 251"
 
 #: ../contents/ui/configInfo.qml
 msgid "bootctl is present"
-msgstr ""
+msgstr "bootctl est présent"
 
 #: ../contents/ui/configInfo.qml
 msgid "Can reboot to the Firmware Setup"
-msgstr ""
+msgstr "Peut redémarrer vers la configuration EFI"
 
 #: ../contents/ui/configInfo.qml
 msgid "Can reboot to the Bootloader Menu"
-msgstr ""
+msgstr "Peut redémarrer vers le menu d'armorçage"
 
 #: ../contents/ui/configInfo.qml
 msgid "Can reboot to a custom entry"
-msgstr ""
+msgstr "Peut redémarrer vers n'importe quelle entrée"
 
 #: ../contents/ui/configInfo.qml
 msgid "In case of issues or missing entries, please ensure that the requirements shown below are met"
-msgstr ""
+msgstr "En cas de problème, merci de vérifier que les conditions ci-dessous soient bien remplies"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Reboot into..."
