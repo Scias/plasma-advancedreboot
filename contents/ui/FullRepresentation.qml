@@ -12,6 +12,7 @@ PlasmaExtras.Representation {
 
   property var shownEntries: ListModel { }
   property var selectedEntry
+  property bool busy: false
 
   implicitWidth: Kirigami.Units.gridUnit * 20
   implicitHeight: mainList.height + header.height + Kirigami.Units.largeSpacing
@@ -86,7 +87,7 @@ PlasmaExtras.Representation {
       anchors.centerIn: parent
       sIcon: "dialog-warning-symbolic"
       message: i18n("No boot entries could be listed.\nPlease check this applet settings.")
-      show: bootMgr.step === BootManager.Ready && shownEntries.count == 0
+      show: bootMgr.step === BootManager.Ready && shownEntries.count == 0 && !busy
       // TODO: add open configuration button
       //plasmoid.action("configure").trigger()
     }
@@ -95,7 +96,7 @@ PlasmaExtras.Representation {
       implicitWidth: 150
       implicitHeight: 150
       anchors.centerIn: parent
-      visible: bootMgr.step < BootManager.Ready
+      visible: bootMgr.step < BootManager.Ready || busy
     }
 
     ErrorMessage {
@@ -118,13 +119,14 @@ PlasmaExtras.Representation {
   }
 
   function buildModel(toHide, model) {
-    // TODO: Performance - make atomic model update
+    busy = true
     shownEntries.clear()
     for (let i = 0; i < model.count; i++) {
       if (!toHide.includes(model.get(i).fullTitle)) {
         shownEntries.append(model.get(i))
       }
     }
+    busy = false
   }
 
   Component.onCompleted: {
@@ -141,10 +143,15 @@ PlasmaExtras.Representation {
         buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
       }
     }
-    
-    function onConfChanged() {
-      buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
-    }
+  
   }
+
+  Connections {
+    target: plasmoid.configuration
+
+    function onValueChanged(value) {
+      if (bootMgr.step === BootManager.Ready && value == "hideEntries") buildModel(plasmoid.configuration.hideEntries, bootMgr.bootEntries)
+    }
+   }
 
 }

@@ -9,7 +9,7 @@ import org.kde.kcmutils as KCM
 // TODO: Better look
 // TODO?: Clean hideEntries in case of config changed
 KCM.ScrollViewKCM {
-  id: root
+  id: generalRoot
 
   property alias cfg_rebootMode: rebootMode.currentIndex
 
@@ -18,6 +18,7 @@ KCM.ScrollViewKCM {
     horizontalAlignment: Text.AlignHCenter
     verticalAlignment: Text.AlignVCenter
     text: i18n("Displayed boot entries in the plasmoid view")
+    wrapMode: Text.WordWrap
   }
 
   view: ListView {

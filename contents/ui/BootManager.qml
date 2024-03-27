@@ -52,13 +52,13 @@ Item {
 
     property var busctlOK: null
     property var bootctlOK: null
-    property int sdVersion
     property var canEntry: null
     property var canMenu: null
     property var canEfi: null
 
     enum State {
         ReqPass,
+        //RootRequired,
         GotEntries,
         Ready,
         Error
@@ -125,12 +125,6 @@ Item {
                 }
             }
 
-            if (step === BootManager.GotEntries && canEntry !== null && canEfi !== null && canMenu !== null) {
-                step = (canEntry || canEfi || canMenu) ? BootManager.Ready : BootManager.Error
-                loaded(step)
-                // TODO: Save all entries in configuration once ready
-            }
-
             if (step === -1) {
                 if (busctlOK && bootctlOK) {
                     step = BootManager.ReqPass
@@ -139,6 +133,21 @@ Item {
                 else if (busctlOK === false || bootctlOK === false) {
                     step = BootManager.Error
                 }
+            }
+
+            if (step === BootManager.GotEntries && canEntry !== null && canEfi !== null && canMenu !== null) {
+                step = (canEntry || canEfi || canMenu) ? BootManager.Ready : BootManager.Error
+                loaded(step)
+            }
+
+            if (step >= BootManager.Ready) {
+                // TERRRIBLE WORKAROUND - GIVE INFO TO CONFIG PANEL
+                plasmoid.configuration.sysdOK = busctlOK
+                plasmoid.configuration.bctlOK = bootctlOK
+                plasmoid.configuration.canEfi = canEfi
+                plasmoid.configuration.canMenu = canMenu
+                plasmoid.configuration.canEntry = canEntry
+                // TODO: Save all entries in configuration once ready
             }
 
         }
@@ -207,15 +216,5 @@ Item {
     }
 
     signal loaded(int step)
-
-    signal confChanged()
-
-    Connections {
-        target: plasmoid.configuration
-
-        function onValueChanged(value) {
-         if (step === BootManager.Ready && value == "hideEntries") confChanged()
-        }
-    }
 
 }

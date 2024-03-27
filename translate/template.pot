@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-25 04:31+0100\n"
+"POT-Creation-Date: 2024-03-27 15:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,10 @@ msgstr ""
 
 #: ../contents/config/config.qml
 msgid "General"
+msgstr ""
+
+#: ../contents/config/config.qml
+msgid "Debug information"
 msgstr ""
 
 #: ../contents/ui/BootManager.qml
@@ -53,6 +57,30 @@ msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Don't reboot"
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "systemd is at version 251 or above"
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "bootctl is present"
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "Can reboot to the Firmware Setup"
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "Can reboot to the Bootloader Menu"
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "Can reboot to a custom entry"
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "In case of issues or missing entries, please ensure that the requirements shown below are met"
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
