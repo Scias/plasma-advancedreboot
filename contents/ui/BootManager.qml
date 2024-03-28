@@ -7,7 +7,7 @@ Item {
 
     // TODO: 0.5 / sudo
     //property bool requiresRoot: false
-    //readonly property string cmdSudo: "pkexec "
+    readonly property string cmdSudo: "pkexec "
 
     readonly property int minVersion: 251 // Minimum systemd version required
     readonly property string cmdDbusPre: "busctl"
@@ -55,13 +55,14 @@ Item {
     property var canEntry: null
     property var canMenu: null
     property var canEfi: null
+    property var gotEntries: null
 
     enum State {
         ReqPass,
-        //RootRequired,
         GotEntries,
         Ready,
-        Error
+        Error,
+        RootRequired
     }
     property int step: -1
 
@@ -97,31 +98,38 @@ Item {
                 let json
                 try { json = JSON.parse(stdout) }
                 catch (err) {
-                    // TODO 0.45 : Get and report the error
-                    // return
+                    if (stderr.includes("Permission")) {
+                        step = BootManager.RootRequired
+                        return
+                    }
+                    else {
+                        gotEntries = false
+                        step = BootManager.GotEntries
+                    }
                 }
-                switch(cmd) {
-                    case cmdCheckCustom:
-                        canEntry = json.data == "yes"
-                        if (canEntry) getEntries()
-                        else step = BootManager.GotEntries
-                        break
-                    case cmdCheckMenu:
-                        canMenu = json.data == "yes"
-                        if (canMenu) bootEntries.append(mapEntry("bootloader-menu", "Bootloader Menu", i18n("Bootloader Menu")))
-                        break
-                    case cmdCheckEfi:
-                        canEfi =  json.data == "yes"
-                        if (canEfi) bootEntries.append(mapEntry("firmware-setup", "Firmware Setup", i18n("Firmware Setup")))
-                        break
-                    case cmdGetEntries:
+                if (cmd == cmdCheckCustom) {
+                    canEntry = json.data == "yes"
+                    if (canEntry) getEntries(false)
+                    else step = BootManager.GotEntries
+                }
+                else if (cmd == cmdCheckMenu) {
+                    canMenu = json.data == "yes"
+                    if (canMenu) bootEntries.append(mapEntry("bootloader-menu", "Bootloader Menu", i18n("Bootloader Menu")))
+                }
+                else if (cmd == cmdCheckEfi) {
+                    canEfi = json.data == "yes"
+                    if (canEfi) bootEntries.append(mapEntry("firmware-setup", "Firmware Setup", i18n("Firmware Setup")))
+                }
+                else if (cmd.includes(cmdGetEntries)) {
+                    if (step != BootManager.GotEntries) {
                         for (const entry of json) {
                             if (!ignoreEntries.includes(entry.id)) {
                                 bootEntries.append(mapEntry(entry.id, entry.title, entry.showTitle))
                             }
                         }
                         step = BootManager.GotEntries
-                        break
+                        gotEntries = true
+                    }
                 }
             }
 
@@ -135,20 +143,7 @@ Item {
                 }
             }
 
-            if (step === BootManager.GotEntries && canEntry !== null && canEfi !== null && canMenu !== null) {
-                step = (canEntry || canEfi || canMenu) ? BootManager.Ready : BootManager.Error
-                loaded(step)
-            }
-
-            if (step >= BootManager.Ready) {
-                // TERRRIBLE WORKAROUND - GIVE INFO TO CONFIG PANEL
-                plasmoid.configuration.sysdOK = busctlOK
-                plasmoid.configuration.bctlOK = bootctlOK
-                plasmoid.configuration.canEfi = canEfi
-                plasmoid.configuration.canMenu = canMenu
-                plasmoid.configuration.canEntry = canEntry
-                // TODO: Save all entries in configuration once ready
-            }
+            if (step >= BootManager.GotEntries) finish(false)
 
         }
 
@@ -203,8 +198,10 @@ Item {
         executable.exec(cmdCheckCustom)
     }
 
-    function getEntries() {
-        executable.exec(cmdGetEntries)
+    function getEntries(root) {
+        let cmd = cmdGetEntries
+        if (root) cmd = cmdSudo + cmd
+        executable.exec(cmd)
     }
 
     function bootEntry(cmd) {
@@ -212,6 +209,27 @@ Item {
         let mode = plasmoid.configuration.rebootMode
         if (mode === 0 || mode === 1) {
             session["requestReboot"](mode)
+        }
+    }
+
+    function finish(skip) {
+
+        if (skip) step = BootManager.GotEntries
+
+        if (step === BootManager.GotEntries && canEntry !== null && canEfi !== null && canMenu !== null) {
+            step = (canEntry || canEfi || canMenu) ? BootManager.Ready : BootManager.Error
+            loaded(step)
+        }
+
+        if (step >= BootManager.Ready) {
+                // TERRRIBLE WORKAROUND - GIVE INFO TO CONFIG PANEL
+                plasmoid.configuration.sysdOK = busctlOK
+                plasmoid.configuration.bctlOK = bootctlOK
+                plasmoid.configuration.canEfi = canEfi
+                plasmoid.configuration.canMenu = canMenu
+                plasmoid.configuration.canEntry = canEntry
+                plasmoid.configuration.gotEntries = gotEntries
+                // TODO: Save all entries in configuration once ready
         }
     }
 

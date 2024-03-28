@@ -39,5 +39,7 @@
     </entry>
     <entry name="canEntry" type="Bool">
     </entry>
+    <entry name="gotEntries" type="Bool">
+    </entry>
   </group>
 </kcfg>

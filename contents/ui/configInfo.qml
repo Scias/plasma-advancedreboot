@@ -15,14 +15,16 @@ KCM.SimpleKCM {
     i18n("bootctl is present"), 
     i18n("Can reboot to the Firmware Setup"), 
     i18n("Can reboot to the Bootloader Menu"), 
-    i18n("Can reboot to a custom entry")
+    i18n("Can reboot to a custom entry"),
+    i18n("Could get the custom entries")
     ]
   property var itemValues: [
     plasmoid.configuration.sysdOK, 
     plasmoid.configuration.bctlOK, 
     plasmoid.configuration.canEfi, 
     plasmoid.configuration.canMenu, 
-    plasmoid.configuration.canEntry
+    plasmoid.configuration.canEntry,
+    plasmoid.configuration.gotEntries
     ]
 
     header: Controls.Label {

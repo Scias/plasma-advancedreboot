@@ -107,6 +107,27 @@ PlasmaExtras.Representation {
       show: bootMgr.step === BootManager.Error
     }
 
+    ErrorMessage {
+      id: rootRequired
+      anchors.centerIn: parent
+      sIcon: "dialog-password-symbolic"
+      message: i18n("Root access is required to get the full boot entries list.")
+      show: bootMgr.step === BootManager.RootRequired
+      action: Kirigami.Action {
+        text: i18n("Retry as root")
+        icon.name: "unlock-symbolic"
+        onTriggered: bootMgr.getEntries(true)
+      }
+      PlasmaComponents.Button {
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        text: i18n("Ignore")
+        icon.name: "errornext"
+        onClicked: bootMgr.finish(true)
+        visible: bootMgr.step === BootManager.RootRequired
+      }
+    }
+
   }
 
   Notification {

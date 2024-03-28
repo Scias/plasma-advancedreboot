@@ -8,7 +8,7 @@ Item {
     property string sIcon
     property string message
     property bool show: false
-    //property var action: null
+    property var action: null
 
     implicitWidth: parent.width
     implicitHeight: parent.height
@@ -20,7 +20,6 @@ Item {
         icon.name: sIcon
         text: message
         visible: show
-        //TODO: Configure button - Help link
-        //helpfulAction: action
+        helpfulAction: action
     }
 }
