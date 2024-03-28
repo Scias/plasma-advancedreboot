@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-27 15:57+0100\n"
+"POT-Creation-Date: 2024-03-28 02:51+0100\n"
 "PO-Revision-Date: 2024-03-16 21:00+0100\n"
 "Last-Translator: Scias <khirac@proton.me>\n"
 "Language-Team: \n"
@@ -82,6 +82,10 @@ msgid "Can reboot to a custom entry"
 msgstr "Peut redémarrer vers n'importe quelle entrée"
 
 #: ../contents/ui/configInfo.qml
+msgid "Could get the custom entries"
+msgstr "A pu récupérer les entrées de démarrage"
+
+#: ../contents/ui/configInfo.qml
 msgid "In case of issues or missing entries, please ensure that the requirements shown below are met"
 msgstr "En cas de problème, merci de vérifier que les conditions ci-dessous soient bien remplies"
 
@@ -104,6 +108,18 @@ msgid ""
 msgstr ""
 "Cet applet ne peut pas fonctionner sur ce système.\n"
 "Please check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Root access is required to get the full boot entries list."
+msgstr "Un accès superutilisateur est nécessaire pour récuperer la liste complète des entrées de démarrage."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Retry as root"
+msgstr "Réessayer en tant que superutilisateur"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Ignore"
+msgstr "Ignorer"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Advanced reboot"
