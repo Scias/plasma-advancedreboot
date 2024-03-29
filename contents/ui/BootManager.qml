@@ -119,12 +119,12 @@ Item {
                     else step = BootManager.GotEntries
                 }
                 else if (cmd == cmdCheckMenu) {
-                    canMenu = json.data === "yes"
+                    canMenu = json.data == "yes"
                     alog("This system can reboot to the bootloader menu: " + canMenu)
                     if (canMenu) mapEfiMenu("bootloader-menu")
                 }
                 else if (cmd == cmdCheckEfi) {
-                    canEfi = json.data === "yes"
+                    canEfi = json.data == "yes"
                     alog("This system can reboot to the firmware setup: " + canEfi)
                     if (canEfi) mapEfiMenu("firmware-setup")
                 }
