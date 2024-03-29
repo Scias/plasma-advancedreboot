@@ -3,7 +3,6 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15 as Controls
 
 import org.kde.kirigami 2.20 as Kirigami
-import org.kde.plasma.components as PlasmaComponents
 import org.kde.kcmutils as KCM
 
 KCM.SimpleKCM {
@@ -17,14 +16,6 @@ KCM.SimpleKCM {
     i18n("Can reboot to the Bootloader Menu"), 
     i18n("Can reboot to a custom entry"),
     i18n("Could get the custom entries")
-    ]
-  property var itemValues: [
-    plasmoid.configuration.sysdOK, 
-    plasmoid.configuration.bctlOK, 
-    plasmoid.configuration.canEfi, 
-    plasmoid.configuration.canMenu, 
-    plasmoid.configuration.canEntry,
-    plasmoid.configuration.gotEntries
     ]
 
     header: Controls.Label {
@@ -51,11 +42,11 @@ KCM.SimpleKCM {
         }
         Kirigami.Icon {
           Layout.rightMargin: Kirigami.Units.gridUnit*2
-          source: itemValues[index] == true ? "dialog-ok-apply" : "error"
-          color: itemValues[index] == true ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.negativeTextColor
+          source: plasmoid.configuration.checkState[index] == true ? "dialog-ok-apply" : "error"
+          color: plasmoid.configuration.checkState[index] == true ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.negativeTextColor
         }
       }
     }
+    // TODO: add view log button
   }
-  
 }

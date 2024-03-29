@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-28 02:51+0100\n"
+"POT-Creation-Date: 2024-03-29 19:06+0100\n"
 "PO-Revision-Date: 2024-03-16 21:00+0100\n"
 "Last-Translator: Scias <khirac@proton.me>\n"
 "Language-Team: \n"
@@ -26,12 +26,12 @@ msgid "Debug information"
 msgstr "Informations de débogage"
 
 #: ../contents/ui/BootManager.qml
-msgid "Bootloader Menu"
-msgstr "Menu du chargeur d'amorçage"
-
-#: ../contents/ui/BootManager.qml
 msgid "Firmware Setup"
 msgstr "Utilitaire de configuration UEFI"
+
+#: ../contents/ui/BootManager.qml
+msgid "Bootloader Menu"
+msgstr "Menu du chargeur d'amorçage"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Displayed boot entries in the plasmoid view"
@@ -107,7 +107,7 @@ msgid ""
 "Please check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
 msgstr ""
 "Cet applet ne peut pas fonctionner sur ce système.\n"
-"Please check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
+"Merci de vérifier que le système est bien configuré pour utiliser UEFI, systemd et bootctl."
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Root access is required to get the full boot entries list."
