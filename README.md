@@ -43,9 +43,9 @@ If you wish to contribute your own translation, a template.pot file is available
 - [X] Ability to just set the flag without rebooting immediately
 - [X] Better error detection and reporting (0.45)
 - [X] Ask for root to get the initial entry list for the distros that hide the ESP by default (0.5)
-- [ ] Show detailed entry info/metadata (0.6)
-- [ ] Show which entry is currently the active one (0.6x)
-- [ ] Show which entry has been set for next boot (0.6x)
+- [ ] Show detailed entry info/metadata (0.5x)
+- [ ] Show which entry is currently the active one (0.6)
+- [ ] Show which entry has been set for next boot (0.6)
 - [ ] Allow customisation of entry names, logos and order (0.7)
 
 ## FAQ
