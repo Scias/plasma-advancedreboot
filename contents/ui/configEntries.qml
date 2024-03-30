@@ -22,10 +22,11 @@ KCM.ScrollViewKCM {
     focus: true
     model: allEntries
     delegate: Controls.SwitchDelegate {
-      required property string fullTitle
+      required property string showTitle
       required property string id
+      required property string version
       width: ListView.view.width - ListView.view.leftMargin - ListView.view.rightMargin
-      text: fullTitle
+      text: showTitle
       checked: !plasmoid.configuration.blacklist.includes(id)
       onToggled: toggleEntry(id, checked)
     }
@@ -69,7 +70,8 @@ KCM.ScrollViewKCM {
       for (const entry of JSON.parse(plasmoid.configuration.savedEntries)) {
         allEntries.append({
           id: entry.id,
-          fullTitle: entry.fullTitle
+          showTitle: entry.showTitle,
+          version: entry.version
         })
       }
     }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-30 02:27+0100\n"
+"POT-Creation-Date: 2024-03-30 14:06+0100\n"
 "PO-Revision-Date: 2024-03-16 21:00+0100\n"
 "Last-Translator: Scias <khirac@proton.me>\n"
 "Language-Team: \n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../contents/config/config.qml
-msgid "General"
-msgstr "Général"
+msgid "Entry management"
+msgstr "Gestion des entrées"
 
 #: ../contents/config/config.qml
 msgid "Debug information"
@@ -33,11 +33,11 @@ msgstr "Utilitaire de configuration UEFI"
 msgid "Bootloader Menu"
 msgstr "Menu du chargeur d'amorçage"
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid "Displayed boot entries in the plasmoid view"
 msgstr "Entrées de démarrage affichées dans l'applet"
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid ""
 "No boot entries could be found.\n"
 "Please check that your system meets the requirements."
@@ -45,19 +45,19 @@ msgstr ""
 "Aucune entrée n'a pu être trouvée.\n"
 "Merci de vérifier l'éligibilité de votre système."
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid "Behavior upon selecting an entry :"
 msgstr "Comportement après sélection :"
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid "Reboot immediately"
 msgstr "Redémarrer immédiatement"
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid "Reboot after confirmation"
 msgstr "Redémarrer après confirmation"
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid "Don't reboot"
 msgstr "Ne pas redémarrer"
 
@@ -99,7 +99,7 @@ msgstr "Voir le journal"
 
 #: ../contents/ui/configInfo.qml
 msgid "Reset settings?"
-msgstr "Réinitialiser l'applet'?"
+msgstr "Réinitialiser l'applet ?"
 
 #: ../contents/ui/configInfo.qml
 msgid "This will reset this plasmoid's configuration and state."
@@ -156,3 +156,6 @@ msgstr "L'éntrée <b>"
 #: ../contents/ui/FullRepresentation.qml
 msgid "</b> has been set for the next reboot."
 msgstr "</b> a bien été définie pour le prochain démarrage"
+
+#~ msgid "General"
+#~ msgstr "Général"

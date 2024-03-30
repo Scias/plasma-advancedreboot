@@ -1,6 +1,6 @@
 # Advanced Reboot Plasmoid for Plasma 6
 
-Simple Plasmoid for KDE Plasma 6 that lists the bootloader entries from systemd-boot/bootctl.
+Simple Plasmoid for KDE Plasma 6 that lists the bootloader entries from systemd-boot/bootctl.  
 This allows you to quickly reboot into Windows, the EFI or bootloader menu, other distributions and EFI programs...
 
 ## Requirements
@@ -13,28 +13,24 @@ This allows you to quickly reboot into Windows, the EFI or bootloader menu, othe
 
 ## Troubleshooting
 
-In addition to the requirements above, some other criterias must be met in order for this applet to fully work :
-
-- The EFI partition (esp) must be user accessible
-
-By default, most Linux distributions hide it completely to the user for security reasons. This makes bootctl listing impossible without root.
-You can work around this by making the esp readable to users by editing your /etc/fstab file and setting the esp fmask and dmask values to 0022.
-```
-UUID=xxxxx  /efi   vfat    ...,fmask=0022,dmask=0022,...
-```
-From version 0.5 this applet will work without the need of such workaround.
-
-- The required DBus methods must be usable without root
-
-A few distributions (like OpenSUSE) make the user unable to interact with bootctl (via DBus) without root. For now there's no solution to this issue yet.
+In case of missing or unavailable entries, a "debugging information" panel with detailed information and logs is available in the configuration window of this plasmoid in order to help with troubleshooting.  
+On most distributions, the root password is needed to get detailed boot entries information. This is only requested once and subsequent times will reuse the existing saved entries (unless they change).  
+A few distributions like OpenSUSE don't allow the unpriviledged user to set the next boot entry. They are not supported (yet).
 
 ## Tested on
 
-- ✅ **Archlinux** - Should work out of the box
-- 🟨 **Endeavour OS** - See Troubleshooting
-- 🟨 **Fedora KDE (Rawhide)** - See Troubleshooting
+- ✅ **Archlinux**
+- ✅ **Endeavour OS**
+- ✅ **Fedora KDE (Rawhide)**
 - 🚫 **KDE Neon (based on Ubuntu 22.04)** - systemd/bootctl version is too old
 - 🚫 **OpenSUSE Tumbleweed** - busctl requires root for setting bootnext
+
+## Translations
+
+- [X] French
+- [X] Dutch (by Heimen Stoffels)
+
+If you wish to contribute your own translation, a template.pot file is available in the translate folder.
 
 ## Roadmap / TODO
 
@@ -46,18 +42,21 @@ A few distributions (like OpenSUSE) make the user unable to interact with bootct
 - [X] Ability to tweak visibility of every entry
 - [X] Ability to just set the flag without rebooting immediately
 - [X] Better error detection and reporting (0.45)
-- [ ] Ask for root to get the initial entry list for the distros that hide the ESP by default (0.5)
+- [X] Ask for root to get the initial entry list for the distros that hide the ESP by default (0.5)
 - [ ] Show detailed entry info/metadata (0.6)
 - [ ] Show which entry is currently the active one (0.6x)
 - [ ] Show which entry has been set for next boot (0.6x)
 - [ ] Allow customisation of entry names, logos and order (0.7)
 
-## Translations
+## FAQ
 
-- [X] French
-- [X] Dutch (by Heimen Stoffels)
+- Why not support GRUB-EFI or rEFInd?
 
-If you wish to contribute your own translation, a template.pot file is available in the translate folder.
+Unlike sdboot, they do not offer easy, non-hacky ways for unpriviledged users to set the next entry to boot, nor a command or API to get a clean boot entries list to begin with.
+
+- Why not support efibootmgr?
+
+efibootmgr only lists or manages the EFI boot manager entries, which is far to be exhaustive as by default only the top level bootloaders (such as grub) may register there as opposed to individual distribution entries. It also doesn't show any detailed name or metadata, on top of the same issues also shared by GRUB and rEFInd.
 
 ## License
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-30 02:27+0100\n"
+"POT-Creation-Date: 2024-03-30 14:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../contents/config/config.qml
-msgid "General"
+msgid "Entry management"
 msgstr ""
 
 #: ../contents/config/config.qml
@@ -33,29 +33,29 @@ msgstr ""
 msgid "Bootloader Menu"
 msgstr ""
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid "Displayed boot entries in the plasmoid view"
 msgstr ""
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid ""
 "No boot entries could be found.\n"
 "Please check that your system meets the requirements."
 msgstr ""
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid "Behavior upon selecting an entry :"
 msgstr ""
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid "Reboot immediately"
 msgstr ""
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid "Reboot after confirmation"
 msgstr ""
 
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/configEntries.qml
 msgid "Don't reboot"
 msgstr ""
 

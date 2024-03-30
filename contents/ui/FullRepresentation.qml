@@ -46,7 +46,8 @@ PlasmaExtras.Representation {
       delegate: PlasmaComponents.ItemDelegate {
         required property string id
         required property string bIcon
-        required property string fullTitle
+        required property string title
+        required property string version
         width: parent ? parent.width : 0 // BUG: Occasional error here
         contentItem: RowLayout {
 
@@ -59,15 +60,24 @@ PlasmaExtras.Representation {
             isMask: true
             scale: 0.8
           }
-
-          PlasmaComponents.Label {
-            Layout.fillWidth: true
-            text: fullTitle
+          ColumnLayout {
+            spacing: 0
+            Kirigami.Heading {
+              level: 4
+              Layout.fillWidth: true
+              text: title
+            }
+            PlasmaComponents.Label {
+              color: Kirigami.Theme.disabledTextColor
+              Layout.fillWidth: true
+              visible: version
+              text: version
+            }
           }
         }
         onClicked: {
           root.expanded = !root.expanded
-          selectedEntry = fullTitle
+          selectedEntry = title
           myNotif.sendEvent()
           bootMgr.bootEntry(id)
         }
@@ -87,7 +97,7 @@ PlasmaExtras.Representation {
       message: i18n("No boot entries could be listed.\nPlease check this applet settings.")
       show: bootMgr.step === BootManager.Ready && shownEntries.count == 0 && !busy
       // TODO: add open configuration button
-      //plasmoid.action("configure").trigger()
+      //Plasmoid.internalAction("configure").trigger()
     }
 
     PlasmaComponents.BusyIndicator {

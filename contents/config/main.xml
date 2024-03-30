@@ -27,6 +27,7 @@
       </choices>
       <default>0</default>
     </entry>
+    <entry name="confVersion" type="Int"></entry>
     <!-- Ugly workaround to get info from bootmgr -->
     <entry name="appLog" type="String"></entry>
     <entry name="appState" type="Int"></entry>

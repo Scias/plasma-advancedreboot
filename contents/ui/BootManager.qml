@@ -10,6 +10,8 @@ Item {
     readonly property string cmdSudo: "pkexec "
 
     readonly property int minVersion: 251 // Minimum required systemd version
+    readonly property int confVersion: 1 // Used to flush existing config data on new releases if needed
+
     readonly property string cmdDbusPre: "busctl"
     readonly property string cmdSdboot: "bootctl"
     readonly property string cmdDbusCheck: cmdDbusPre + " --version"
@@ -131,7 +133,7 @@ Item {
                 else if (cmd == cmdGetEntriesID) {
                     let entriesID = JSON.stringify(json.data)
 
-                    if (!plasmoid.configuration.entriesID || !plasmoid.configuration.savedEntries || plasmoid.configuration.entriesID != entriesID) {
+                    if (!plasmoid.configuration.entriesID || !plasmoid.configuration.savedEntries || plasmoid.configuration.entriesID != entriesID || plasmoid.configuration.confVersion != confVersion) {
                         alog("No saved entries were found or they have changed")
                         plasmoid.configuration.entriesID = entriesID
                         getEntriesFull(false)
@@ -174,6 +176,7 @@ Item {
     }
 
     function initialize() {
+        alog("Saved/Current configuration model version: " + plasmoid.configuration.confVersion + "/" + confVersion)
         alog("Checking base requirements...")
         executable.exec(cmdDbusCheck)
         executable.exec(cmdSdbootCheck)
@@ -214,9 +217,12 @@ Item {
     function mapEfiMenu(id) {
         bootEntries.push({
             id: id,
-            fullTitle: id == "firmware-setup" ? i18n("Firmware Setup") : i18n("Bootloader Menu"),
+            title: id == "firmware-setup" ? i18n("Firmware Setup") : i18n("Bootloader Menu"),
+            showTitle: id == "firmware-setup" ? i18n("Firmware Setup") : i18n("Bootloader Menu"),
+            version: "",
             bIcon: id == "firmware-setup" ? "settings" : "menu",
         })
+        alog("Added \"" + id + "\"")
     }
 
     function mapAllEntries(json) {
@@ -225,18 +231,19 @@ Item {
                 let bIcon = defaultIcon
 
                 for (const key in iconMap) {
-                    if (entry.showTitle.includes(key)) {
+                    if (entry.title.includes(key)) {
                         bIcon = iconMap[key]
                         break
                     }
                 }
-                alog("Got \"" + entry.id + "\"")
-
                 bootEntries.push({
                     id: entry.id,
-                    fullTitle: entry.showTitle,
+                    title: entry.title,
+                    showTitle: entry.showTitle,
+                    version: entry.version ?? "",
                     bIcon: bIcon,
                 })
+                alog("Added \"" + entry.id + "\"")
             }
         }
     }
@@ -261,6 +268,7 @@ Item {
             if (!reusedConfig) plasmoid.configuration.savedEntries = JSON.stringify(bootEntries)
             loaded(step)
 
+            plasmoid.configuration.confVersion = confVersion
             // Ugly workaround to give info to config panels
             plasmoid.configuration.checkState = [busctlOK,bootctlOK,canEfi,canMenu,canEntry,gotEntries]
             plasmoid.configuration.appState = step
@@ -278,7 +286,7 @@ Item {
     }
 
     function alog(msg) {
-        plasmoid.configuration.appLog = plasmoid.configuration.appLog + "> " + msg + "\n" // Workaround
+        plasmoid.configuration.appLog += "> " + msg + "\n" // Workaround
         console.log("advancedreboot: " + msg)
     }
 
