@@ -173,7 +173,7 @@ PlasmaExtras.Representation {
 
     function onValueChanged(value) {
       if (bootMgr.step === BootManager.Ready && value == "blacklist") {
-        bootMgr.alog("Configuration has changed - Updating the listview")
+        //bootMgr.alog("Configuration has changed - Updating the listview")
         updateModel()
       }
     }

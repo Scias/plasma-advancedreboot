@@ -18,13 +18,13 @@ KCM.SimpleKCM {
     i18n("Could get the custom entries")
     ]
 
-    header: Controls.Label {
-      text: i18n("In case of issues or missing entries, please ensure that the requirements shown below are met")
-      horizontalAlignment: Text.AlignHCenter
-      wrapMode: Text.WordWrap
-      topPadding: Kirigami.Units.largeSpacing
-      bottomPadding: Kirigami.Units.largeSpacing
-    }
+  header: Controls.Label {
+    text: i18n("In case of issues or missing entries, please ensure that the requirements shown below are met")
+    horizontalAlignment: Text.AlignHCenter
+    wrapMode: Text.WordWrap
+    topPadding: Kirigami.Units.largeSpacing
+    bottomPadding: Kirigami.Units.largeSpacing
+  }
 
   ColumnLayout {
     spacing: Kirigami.Units.largeSpacing
@@ -47,6 +47,57 @@ KCM.SimpleKCM {
         }
       }
     }
-    // TODO: add view log button
+
+    RowLayout {
+      Layout.fillWidth: true
+      spacing: Kirigami.Units.largeSpacing
+
+      Item {
+        Layout.fillWidth: true
+      }
+      Controls.Button {
+        text: i18n("Reset configuration")
+        onClicked: resetDialog.open()
+      }
+      Controls.Button {
+        text: i18n("View log")
+        onClicked: logDialog.open()
+      }
+      Item {
+        Layout.fillWidth: true
+      }
+    }
+  }
+
+  Kirigami.PromptDialog {
+    id: resetDialog
+    title: i18n("Reset settings?")
+    subtitle: i18n("This will reset this plasmoid's configuration and state.")
+    standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
+
+    onAccepted: {
+      plasmoid.configuration.entriesID = ""
+      plasmoid.configuration.savedEntries = ""
+      plasmoid.configuration.blacklist = []
+      plasmoid.configuration.rebootMode = 0
+      // TODO: Maybe there's a way to restart the plasmoid?
+      showPassiveNotification(i18n("This plasmoid's configuration and state have been reset. Please restart it (or Plasma) to start anew."))
+    }
+  }
+
+  Kirigami.PromptDialog {
+    id: logDialog
+    width: parent.width - Kirigami.Units.gridUnit * 4
+
+    title: i18n("Log")
+    standardButtons: Kirigami.Dialog.NoButton
+
+    Controls.TextArea {
+      id: field
+      readOnly: true
+      Layout.fillWidth: true
+      text: plasmoid.configuration.appLog
+      wrapMode: Controls.TextArea.WordWrap
+    }
   }
 }

@@ -102,7 +102,7 @@ Item {
                 try { json = JSON.parse(stdout) }
                 catch (err) {
                     if (stderr.includes("Permission")) {
-                        alog("Root is required to get bootctl entries - Prompting user")
+                        alog("Root is required to get bootctl entries - Awaiting user response...")
                         step = BootManager.RootRequired
                         return
                     }
@@ -137,7 +137,7 @@ Item {
                         getEntriesFull(false)
                     }
                     else {
-                        alog("Existing saved entries were found and they didn't change")
+                        alog("Existing saved entries were found and match saved ones")
                         getEntriesSaved()
                         step = BootManager.GotEntries
                         gotEntries = true
@@ -278,7 +278,7 @@ Item {
     }
 
     function alog(msg) {
-        plasmoid.configuration.appLog = plasmoid.configuration.appLog.concat([msg]) // Workaround
+        plasmoid.configuration.appLog = plasmoid.configuration.appLog + "> " + msg + "\n" // Workaround
         console.log("advancedreboot: " + msg)
     }
 

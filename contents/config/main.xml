@@ -28,7 +28,7 @@
       <default>0</default>
     </entry>
     <!-- Ugly workaround to get info from bootmgr -->
-    <entry name="appLog" type="StringList"></entry>
+    <entry name="appLog" type="String"></entry>
     <entry name="appState" type="Int"></entry>
     <entry name="checkState" type="StringList"></entry>
   </group>
