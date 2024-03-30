@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-29 19:06+0100\n"
+"POT-Creation-Date: 2024-03-30 02:27+0100\n"
 "PO-Revision-Date: 2024-03-16 21:00+0100\n"
 "Last-Translator: Scias <khirac@proton.me>\n"
 "Language-Team: \n"
@@ -89,6 +89,30 @@ msgstr "A pu récupérer les entrées de démarrage"
 msgid "In case of issues or missing entries, please ensure that the requirements shown below are met"
 msgstr "En cas de problème, merci de vérifier que les conditions ci-dessous soient bien remplies"
 
+#: ../contents/ui/configInfo.qml
+msgid "Reset configuration"
+msgstr "Réinitialiser la configuration"
+
+#: ../contents/ui/configInfo.qml
+msgid "View log"
+msgstr "Voir le journal"
+
+#: ../contents/ui/configInfo.qml
+msgid "Reset settings?"
+msgstr "Réinitialiser l'applet'?"
+
+#: ../contents/ui/configInfo.qml
+msgid "This will reset this plasmoid's configuration and state."
+msgstr "Ceci réinitialisera l'applet à son état initial."
+
+#: ../contents/ui/configInfo.qml
+msgid "This plasmoid's configuration and state have been reset. Please restart it (or Plasma) to start anew."
+msgstr "L'applet a été réinitialisé. Merci de le relancer ou de redémarrer Plasma pour confirmer."
+
+#: ../contents/ui/configInfo.qml
+msgid "Log"
+msgstr "Journal"
+
 #: ../contents/ui/FullRepresentation.qml
 msgid "Reboot into..."
 msgstr "Redémarrer vers..."
@@ -115,7 +139,7 @@ msgstr "Un accès superutilisateur est nécessaire pour récuperer la liste comp
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Retry as root"
-msgstr "Réessayer en tant que superutilisateur"
+msgstr "S'authentifier"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Ignore"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-29 19:06+0100\n"
+"POT-Creation-Date: 2024-03-30 02:27+0100\n"
 "PO-Revision-Date: 2024-03-24 12:49+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -89,6 +89,32 @@ msgstr ""
 msgid ""
 "In case of issues or missing entries, please ensure that the requirements "
 "shown below are met"
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "Reset configuration"
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "View log"
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "Reset settings?"
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "This will reset this plasmoid's configuration and state."
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid ""
+"This plasmoid's configuration and state have been reset. Please restart it "
+"(or Plasma) to start anew."
+msgstr ""
+
+#: ../contents/ui/configInfo.qml
+msgid "Log"
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml

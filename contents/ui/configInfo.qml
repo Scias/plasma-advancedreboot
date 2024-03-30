@@ -26,6 +26,7 @@ KCM.SimpleKCM {
     bottomPadding: Kirigami.Units.largeSpacing
   }
 
+  // BUG: The checks if the user changes rebootMode...
   ColumnLayout {
     spacing: Kirigami.Units.largeSpacing
     Layout.fillWidth: true

@@ -34,14 +34,12 @@ PlasmaExtras.Representation {
     ListView {
       id: mainList
 
-      anchors.verticalCenter: parent.verticalCenter
-
       interactive: false
+      spacing: Kirigami.Units.smallSpacing
 
+      anchors.verticalCenter: parent.verticalCenter
       width: parent.width
       height: shownEntries.count > 0 ? contentHeight : 300
-
-      spacing: Kirigami.Units.smallSpacing
 
       model: shownEntries
 
