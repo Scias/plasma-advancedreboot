@@ -25,8 +25,8 @@ PlasmaExtras.Representation {
 
   header: PlasmaExtras.PlasmoidHeading {
     contentItem: Kirigami.Heading {
+      padding: Kirigami.Units.smallSpacing
       horizontalAlignment: Text.AlignHCenter
-      verticalAlignment: Text.AlignVCenter
       text: i18n("Reboot into...")
     }
   }

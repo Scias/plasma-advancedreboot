@@ -43,8 +43,8 @@ KCM.SimpleKCM {
         }
         Kirigami.Icon {
           Layout.rightMargin: Kirigami.Units.gridUnit*2
-          source: plasmoid.configuration.checkState[index] == true ? "dialog-ok-apply" : "error"
-          color: plasmoid.configuration.checkState[index] == true ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.negativeTextColor
+          source: plasmoid.configuration.checkState[index] == "true" ? "dialog-ok-apply" : "error"
+          color: plasmoid.configuration.checkState[index] == "true" ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.negativeTextColor
         }
       }
     }
