@@ -176,6 +176,10 @@ Item {
     }
 
     function initialize() {
+        // Workarounds
+        plasmoid.configuration.appLog = ""
+        plasmoid.configuration.checkState = [false,false,false,false,false,false]
+
         alog("Saved/Current configuration model version: " + plasmoid.configuration.confVersion + "/" + confVersion)
         alog("Checking base requirements...")
         executable.exec(cmdDbusCheck)

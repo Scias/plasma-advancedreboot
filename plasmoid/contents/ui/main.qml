@@ -11,11 +11,9 @@ PlasmoidItem {
   preferredRepresentation: compactRepresentation
 
   compactRepresentation: CompactRepresentation { id: compact }
-
   fullRepresentation: FullRepresentation { id: full }
 
   Component.onCompleted: {
-    plasmoid.configuration.appLog = ""
     bootMgr.initialize()
   }
 

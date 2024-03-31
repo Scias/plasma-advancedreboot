@@ -13,8 +13,12 @@ This allows you to quickly reboot into Windows, the EFI or bootloader menu, othe
 
 ## Troubleshooting
 
-In case of missing or unavailable entries, a "debugging information" panel with detailed information and logs is available in the configuration window of this plasmoid in order to help with troubleshooting.  
-On most distributions, the root password is needed to get detailed boot entries information. This is only requested once and subsequent times will reuse the existing saved entries (unless they change).  
+In case of missing or unavailable entries, a "debugging information" panel with detailed information and logs is available in the configuration window of this plasmoid in order to help with troubleshooting.
+
+
+On most distributions, the root password is needed to get detailed boot entries information. This is only requested once and subsequent times will reuse the existing saved entries (unless they change).
+
+
 A few distributions like OpenSUSE don't allow the unpriviledged user to set the next boot entry. They are not supported (yet).
 
 ## Tested on
