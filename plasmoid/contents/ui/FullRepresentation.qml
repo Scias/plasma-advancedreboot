@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 
+import org.kde.plasma.plasmoid
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.extras as PlasmaExtras
 import org.kde.kirigami 2.20 as Kirigami
@@ -96,8 +97,11 @@ PlasmaExtras.Representation {
       sIcon: "dialog-warning-symbolic"
       message: i18n("No boot entries could be listed.\nPlease check this applet settings.")
       show: bootMgr.step === BootManager.Ready && shownEntries.count == 0 && !busy
-      // TODO: add open configuration button
-      //Plasmoid.internalAction("configure").trigger()
+      action: Kirigami.Action {
+        text: i18n("Configure")
+        icon.name: "configure"
+        onTriggered: plasmoid.internalAction("configure").trigger()
+      }
     }
 
     PlasmaComponents.BusyIndicator {
