@@ -5,15 +5,13 @@ import org.kde.plasma.plasma5support as Plasma5Support
 
 Item {
 
-    // TODO: 0.5 / sudo
-    //property bool requiresRoot: false
-    readonly property string cmdSudo: "pkexec "
-
     readonly property int minVersion: 251 // Minimum required systemd version
     readonly property int confVersion: 1 // Used to flush existing config data on new releases if needed
 
+    readonly property string cmdSudo: "pkexec "
     readonly property string cmdDbusPre: "busctl"
     readonly property string cmdSdboot: "bootctl"
+
     readonly property string cmdDbusCheck: cmdDbusPre + " --version"
     readonly property string cmdSdbootCheck: cmdSdboot + " --version"
     readonly property string cmdDbusPath: "org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager"
@@ -184,6 +182,16 @@ Item {
         alog("Checking base requirements...")
         executable.exec(cmdDbusCheck)
         executable.exec(cmdSdbootCheck)
+    }
+
+    function reset() {
+        alog("Reset has been requested")
+        step = -1
+        plasmoid.configuration.savedEntries = ""
+        plasmoid.configuration.entriesID = ""
+        bootEntries = []
+        reusedConfig = false
+        initialize()
     }
 
     function getAbilities() {

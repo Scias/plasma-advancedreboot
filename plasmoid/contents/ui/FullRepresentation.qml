@@ -11,7 +11,6 @@ import org.kde.notification
 // TODO: Put stuff inside parenthesis / kernel versions in a separate line below
 PlasmaExtras.Representation {
 
-  property var shownEntries: ListModel { }
   property var selectedEntry
   property bool busy: false
 
@@ -25,10 +24,22 @@ PlasmaExtras.Representation {
   Layout.minimumHeight: implicitHeight
 
   header: PlasmaExtras.PlasmoidHeading {
-    contentItem: Kirigami.Heading {
-      padding: Kirigami.Units.smallSpacing
-      horizontalAlignment: Text.AlignHCenter
-      text: i18n("Reboot into...")
+    contentItem: RowLayout {
+      Kirigami.Heading {
+        Layout.fillWidth: true
+        padding: Kirigami.Units.smallSpacing
+        text: i18n("Reboot into...")
+      }
+      PlasmaComponents.ToolButton {
+        icon.name: "view-refresh"
+        onClicked: plasmoid.internalAction("reset").trigger()
+        PlasmaComponents.ToolTip { text: i18n("Reload this applet") }
+      }
+      PlasmaComponents.ToolButton {
+        icon.name: "configure"
+        onClicked: plasmoid.internalAction("configure").trigger()
+        PlasmaComponents.ToolTip { text: i18n("Configure this applet") }
+      }
     }
   }
 
