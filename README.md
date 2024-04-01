@@ -1,3 +1,5 @@
+<div align="center">![plasmoid](screenshots/screenshot-v0.52-1.png)</div>
+
 # Advanced Reboot Plasmoid for Plasma 6
 
 Simple Plasmoid for KDE Plasma 6 that lists the bootloader entries from systemd-boot/bootctl.  
