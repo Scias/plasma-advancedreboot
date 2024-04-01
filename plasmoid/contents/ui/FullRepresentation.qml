@@ -28,7 +28,7 @@ PlasmaExtras.Representation {
       Kirigami.Heading {
         Layout.fillWidth: true
         padding: Kirigami.Units.smallSpacing
-        text: i18n("Reboot into...")
+        text: i18n("Reboot to...")
       }
       PlasmaComponents.ToolButton {
         icon.name: "view-refresh"
