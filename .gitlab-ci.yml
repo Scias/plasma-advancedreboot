@@ -28,5 +28,5 @@ translate-job:       # This job runs in the build stage, which runs first.
   script:
     - echo "Updating translation files..."
     - cd plasmoid/translate
-    - sh ./merge
-    - sh ./build
+    - bash ./merge
+    - bash ./build
