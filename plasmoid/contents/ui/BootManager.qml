@@ -58,13 +58,14 @@ Item {
     property bool reusedConfig: false
 
     enum State {
+        Init,
         ReqPass,
         GotEntries,
         Ready,
         Error,
         RootRequired
     }
-    property int step: -1
+    property int step: BootManager.Init
 
     property var bootEntries: []
     
@@ -151,7 +152,7 @@ Item {
                 }
             }
 
-            if (step === -1) {
+            if (step === BootManager.Init) {
                 if (busctlOK && bootctlOK) {
                     alog("The systemd and bootctl requirements seem met")
                     step = BootManager.ReqPass
@@ -186,7 +187,7 @@ Item {
 
     function reset() {
         alog("Reset has been requested")
-        step = -1
+        step = BootManager.Init
         plasmoid.configuration.savedEntries = ""
         plasmoid.configuration.entriesID = ""
         bootEntries = []
@@ -261,14 +262,10 @@ Item {
     }
 
     function finish(skip) {
-        if (skip) step = BootManager.GotEntries
 
-        if (step === BootManager.GotEntries && canEntry !== null && canEfi !== null && canMenu !== null) {
-            if (!canEfi && !canMenu) {
-                if (!canEntry || bootEntries.length == 0) {
-                    step = BootManager.Error
-                }
-                else step = BootManager.Ready
+        if (skip || (canEntry !== null && canEfi !== null && canMenu !== null)) {
+            if (!canEfi && !canMenu && (!canEntry || bootEntries.length == 0)) {
+                step = BootManager.Error
             }
             else {
                 step = BootManager.Ready
