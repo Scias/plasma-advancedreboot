@@ -20,7 +20,11 @@ stages:          # List of stages for jobs, and their order of execution
   - build-i18n
 
 translate-job:       # This job runs in the build stage, which runs first.
+  image: ubuntu:rolling
   stage: build-i18n
+  before_script:
+    - apt-get update
+    - apt-get install -q -y --no-install-recommends gettext
   script:
     - echo "Updating translation files..."
     - cd plasmoid/translate
