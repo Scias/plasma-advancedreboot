@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-30 14:06+0100\n"
+"POT-Creation-Date: 2024-04-03 12:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,9 +38,7 @@ msgid "Displayed boot entries in the plasmoid view"
 msgstr ""
 
 #: ../contents/ui/configEntries.qml
-msgid ""
-"No boot entries could be found.\n"
-"Please check that your system meets the requirements."
+msgid "No boot entries could be found."
 msgstr ""
 
 #: ../contents/ui/configEntries.qml
@@ -104,7 +102,7 @@ msgid "This will reset this plasmoid's configuration and state."
 msgstr ""
 
 #: ../contents/ui/configInfo.qml
-msgid "This plasmoid's configuration and state have been reset. Please restart it (or Plasma) to start anew."
+msgid "This plasmoid's configuration and state have been reset."
 msgstr ""
 
 #: ../contents/ui/configInfo.qml
@@ -112,13 +110,25 @@ msgid "Log"
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
-msgid "Reboot into..."
+msgid "Reboot to..."
+msgstr ""
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Reload this applet"
+msgstr ""
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Configure this applet"
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
 "No boot entries could be listed.\n"
 "Please check this applet settings."
+msgstr ""
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Configure"
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml

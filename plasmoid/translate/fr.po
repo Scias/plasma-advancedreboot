@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-03-30 14:06+0100\n"
+"POT-Creation-Date: 2024-04-03 12:26+0200\n"
 "PO-Revision-Date: 2024-03-16 21:00+0100\n"
 "Last-Translator: Scias <khirac@proton.me>\n"
 "Language-Team: \n"
@@ -38,12 +38,8 @@ msgid "Displayed boot entries in the plasmoid view"
 msgstr "Entrées de démarrage affichées dans l'applet"
 
 #: ../contents/ui/configEntries.qml
-msgid ""
-"No boot entries could be found.\n"
-"Please check that your system meets the requirements."
-msgstr ""
-"Aucune entrée n'a pu être trouvée.\n"
-"Merci de vérifier l'éligibilité de votre système."
+msgid "No boot entries could be found."
+msgstr "Aucune entrée de démarrage n'a pu être trouvée."
 
 #: ../contents/ui/configEntries.qml
 msgid "Behavior upon selecting an entry :"
@@ -106,16 +102,24 @@ msgid "This will reset this plasmoid's configuration and state."
 msgstr "Ceci réinitialisera l'applet à son état initial."
 
 #: ../contents/ui/configInfo.qml
-msgid "This plasmoid's configuration and state have been reset. Please restart it (or Plasma) to start anew."
-msgstr "L'applet a été réinitialisé. Merci de le relancer ou de redémarrer Plasma pour confirmer."
+msgid "This plasmoid's configuration and state have been reset."
+msgstr "La configuration de cet applet a bien été réinitialisée."
 
 #: ../contents/ui/configInfo.qml
 msgid "Log"
 msgstr "Journal"
 
 #: ../contents/ui/FullRepresentation.qml
-msgid "Reboot into..."
+msgid "Reboot to..."
 msgstr "Redémarrer vers..."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Reload this applet"
+msgstr "Recharger cet applet"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Configure this applet"
+msgstr "Configurer cet applet"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
@@ -124,6 +128,10 @@ msgid ""
 msgstr ""
 "Aucune entrée de démarrage ne peut être affichée.\n"
 "Merci de vérifier les paramètres de cet applet."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Configure"
+msgstr "Configurer"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid ""
@@ -156,6 +164,19 @@ msgstr "L'éntrée <b>"
 #: ../contents/ui/FullRepresentation.qml
 msgid "</b> has been set for the next reboot."
 msgstr "</b> a bien été définie pour le prochain démarrage"
+
+#~ msgid ""
+#~ "No boot entries could be found.\n"
+#~ "Please check that your system meets the requirements."
+#~ msgstr ""
+#~ "Aucune entrée n'a pu être trouvée.\n"
+#~ "Merci de vérifier l'éligibilité de votre système."
+
+#~ msgid "This plasmoid's configuration and state have been reset. Please restart it (or Plasma) to start anew."
+#~ msgstr "L'applet a été réinitialisé. Merci de le relancer ou de redémarrer Plasma pour confirmer."
+
+#~ msgid "Reboot into..."
+#~ msgstr "Redémarrer vers..."
 
 #~ msgid "General"
 #~ msgstr "Général"
