@@ -7,8 +7,6 @@ import org.kde.plasma.extras as PlasmaExtras
 import org.kde.kirigami 2.20 as Kirigami
 import org.kde.notification
 
-// TODO: Trim long entries or make them scroll
-// TODO: Put stuff inside parenthesis / kernel versions in a separate line below
 PlasmaExtras.Representation {
 
   property var selectedEntry
@@ -78,6 +76,7 @@ PlasmaExtras.Representation {
               level: 4
               Layout.fillWidth: true
               text: title
+              elide: Text.ElideRight
             }
             PlasmaComponents.Label {
               color: Kirigami.Theme.disabledTextColor
