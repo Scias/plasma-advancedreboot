@@ -1,4 +1,4 @@
-stages:          # List of stages for jobs, and their order of execution
+stages:
   - zip
   - upload
   - release
@@ -11,7 +11,7 @@ zip_job:
   stage: zip
   image: debian:latest
   rules:
-    - if: $CI_COMMIT_TAG                 # Run this job when a tag is created
+    - if: $CI_COMMIT_TAG
   artifacts:
     paths:
       - plasmoid/${PLASMOID_PKG}
@@ -32,7 +32,6 @@ upload_job:
   rules:
     - if: $CI_COMMIT_TAG
   script:
-    - ls -laR
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file plasmoid/${PLASMOID_PKG} "${PACKAGE_REGISTRY_URL}/${PLASMOID_PKG}"
 
@@ -42,14 +41,14 @@ release_job:
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   rules:
-    - if: $CI_COMMIT_TAG                 # Run this job when a tag is created
+    - if: $CI_COMMIT_TAG
   script:
     - echo "Performing release job"
-  release:                               # See https://docs.gitlab.com/ee/ci/yaml/#release for available properties
+  release:
     tag_name: '$CI_COMMIT_TAG'
     description: '$CI_COMMIT_TAG_MESSAGE'
     assets:
       links:
-        - name: 'Package release $CI_COMMIT_TAG'
+        - name: 'Plasmoid file (${CI_COMMIT_TAG})'
           url: '${PACKAGE_REGISTRY_URL}/${PLASMOID_PKG}'
           link_type: "package" 
