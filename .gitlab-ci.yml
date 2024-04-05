@@ -23,7 +23,10 @@ zip_job:
     - cd plasmoid
     - zip -r ${PLASMOID_PKG} metadata.json assets/ contents/
 
-upload:
+upload_job:
+  needs:
+    - job: zip_job
+      artifacts: true
   stage: upload
   image: curlimages/curl:latest
   rules:
@@ -33,6 +36,8 @@ upload:
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file plasmoid/${PLASMOID_PKG} "${PACKAGE_REGISTRY_URL}"
 
 release_job:
+  needs:
+    - job: upload_job
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   rules:
