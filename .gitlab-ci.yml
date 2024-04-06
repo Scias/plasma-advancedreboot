@@ -1,0 +1,55 @@
+stages:
+  - zip
+  - upload
+  - release
+
+variables:
+  PLASMOID_PKG: "advancedreboot-${CI_COMMIT_TAG}.plasmoid"
+  PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/advancedreboot/${CI_COMMIT_TAG}"
+
+zip_job:
+  stage: zip
+  image: debian:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  artifacts:
+    paths:
+      - plasmoid/${PLASMOID_PKG}
+  before_script:
+    - apt-get update
+    - apt-get install -q -y --no-install-recommends zip
+  script:
+    - echo "Creating Plasmoid package..."
+    - cd plasmoid
+    - zip -r ${PLASMOID_PKG} metadata.json assets/ contents/
+
+upload_job:
+  needs:
+    - job: zip_job
+      artifacts: true
+  stage: upload
+  image: curlimages/curl:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo "Uploading package to registry..."
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file plasmoid/${PLASMOID_PKG} "${PACKAGE_REGISTRY_URL}/${PLASMOID_PKG}"
+
+release_job:
+  needs:
+    - job: upload_job
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo "Performing release job..."
+  release:
+    tag_name: '$CI_COMMIT_TAG'
+    description: '$CI_COMMIT_TAG_MESSAGE'
+    assets:
+      links:
+        - name: 'Plasmoid package (${CI_COMMIT_TAG})'
+          url: '${PACKAGE_REGISTRY_URL}/${PLASMOID_PKG}'
+          link_type: "package"
