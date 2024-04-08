@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15 as Controls
 
 import org.kde.kirigami 2.20 as Kirigami
+import org.kde.plasma.components as PlasmaComponents
 import org.kde.kcmutils as KCM
 
 KCM.ScrollViewKCM {
@@ -10,25 +11,72 @@ KCM.ScrollViewKCM {
 
   property alias cfg_rebootMode: rebootMode.currentIndex
   property var allEntries: ListModel { }
+  readonly property var transition: Transition { 
+    NumberAnimation { properties: "x,y"; duration: 300; easing.type: Easing.OutQuart }
+  }
 
   header: Controls.Label {
     Layout.fillWidth: true
     horizontalAlignment: Text.AlignHCenter
-    text: i18n("Displayed boot entries in the plasmoid view")
+    text: i18n("Toggle and rearrange entries displayed in the main view")
     wrapMode: Text.WordWrap
   }
 
   view: ListView {
+    id: entriesView
     focus: true
     model: allEntries
-    delegate: Controls.SwitchDelegate {
+    reuseItems: true
+    move: transition
+    displaced: transition
+
+    delegate: Rectangle {
+      required property int index
+      //required property string title
       required property string showTitle
-      required property string id
-      required property string version
-      width: ListView.view.width - ListView.view.leftMargin - ListView.view.rightMargin
-      text: showTitle
-      checked: !plasmoid.configuration.blacklist.includes(id)
-      onToggled: toggleEntry(id, checked)
+      //required property string id
+      //required property string version
+      required property string bIcon
+      required property bool show
+      color: index % 2 == 0 ? Kirigami.Theme.backgroundColor : Kirigami.Theme.alternateBackgroundColor
+      width: parent.width
+      height: rowEntry.implicitHeight
+      RowLayout {
+        id: rowEntry
+        width: parent.width
+        Kirigami.Icon {
+            source: Qt.resolvedUrl("../../assets/icons/" + bIcon + ".svg")
+            color: Kirigami.Theme.colorSet
+            smooth: true
+            isMask: true
+            scale: 0.5
+        }
+        Controls.Label {
+          Layout.fillWidth: true
+          text: showTitle
+          elide: Text.ElideRight
+        }
+        Controls.ToolButton {
+          icon.name: show ? "password-show-on" : "password-show-off"
+          onClicked: toggleEntry(index, !show)
+          icon.color: show ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
+          PlasmaComponents.ToolTip { text: i18n("Toggle display of this entry") }
+        }
+        Controls.ToolButton {
+          icon.name: "arrow-up"
+          onClicked: moveEntry(index, index - 1)
+          opacity: index > 0 ? 1 : 0
+          enabled: index > 0
+          PlasmaComponents.ToolTip { text: i18n("Move this entry up the list") }
+        }
+        Controls.ToolButton {
+          icon.name: "arrow-down"
+          onClicked: moveEntry(index, index + 1)
+          opacity: index < allEntries.count - 1 ? 1 : 0
+          enabled: index < allEntries.count - 1
+          PlasmaComponents.ToolTip { text: i18n("Move this entry down the list") }
+        }
+      }
     }
 
     ErrorMessage {
@@ -55,26 +103,42 @@ KCM.ScrollViewKCM {
     }
   }
 
-  function toggleEntry(id, enabled) {
-    // BUG/WORKAROUND: Have to use copy methods because direct modification (push) doesn't work...
-    if (enabled) {
-      plasmoid.configuration.blacklist = plasmoid.configuration.blacklist.filter((entry) => entry != id)
-    }
-    else {
-      plasmoid.configuration.blacklist = plasmoid.configuration.blacklist.concat([id])
+  function moveEntry(from, to) {
+    allEntries.move(from, to, 1)
+    saveEntries()
+  }
+
+  function toggleEntry(index, show) {
+    allEntries.setProperty(index, "show", show)
+    saveEntries()
+  }
+
+  function loadEntries() {
+    if (plasmoid.configuration.savedEntries) {
+      for (const entry of JSON.parse(plasmoid.configuration.savedEntries)) {
+        allEntries.append(entry)
+      }
     }
   }
 
-  Component.onCompleted: {
-    if (plasmoid.configuration.savedEntries) {
-      for (const entry of JSON.parse(plasmoid.configuration.savedEntries)) {
-        allEntries.append({
-          id: entry.id,
-          showTitle: entry.showTitle,
-          version: entry.version
-        })
-      }
+  function saveEntries() {
+    let tmp = []
+    for (let i = 0; i < allEntries.count; i++) {
+      let entry = allEntries.get(i)
+      tmp.push({
+        id: entry.id,
+        title: entry.title,
+        showTitle: entry.showTitle,
+        version: entry.version,
+        bIcon: entry.bIcon,
+        show: entry.show,
+      })
     }
+    plasmoid.configuration.savedEntries = JSON.stringify(tmp)
+  }
+
+  Component.onCompleted: {
+    if (plasmoid.configuration.savedEntries) loadEntries()
   }
 
 }

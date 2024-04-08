@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-04-03 12:26+0200\n"
+"POT-Creation-Date: 2024-04-08 21:28+0200\n"
 "PO-Revision-Date: 2024-03-24 12:49+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -34,8 +34,20 @@ msgid "Bootloader Menu"
 msgstr "Opstartmenu"
 
 #: ../contents/ui/configEntries.qml
-msgid "Displayed boot entries in the plasmoid view"
-msgstr "Getoonde opstartitems op widget"
+msgid "Toggle and rearrange entries displayed in the main view"
+msgstr ""
+
+#: ../contents/ui/configEntries.qml
+msgid "Toggle display of this entry"
+msgstr ""
+
+#: ../contents/ui/configEntries.qml
+msgid "Move this entry up the list"
+msgstr ""
+
+#: ../contents/ui/configEntries.qml
+msgid "Move this entry down the list"
+msgstr ""
 
 #: ../contents/ui/configEntries.qml
 msgid "No boot entries could be found."
@@ -168,6 +180,9 @@ msgstr "<b>"
 #: ../contents/ui/FullRepresentation.qml
 msgid "</b> has been set for the next reboot."
 msgstr "</b> zal bij de volgende herstart worden gebruikt."
+
+#~ msgid "Displayed boot entries in the plasmoid view"
+#~ msgstr "Getoonde opstartitems op widget"
 
 #~ msgid ""
 #~ "No boot entries could be found.\n"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-04-03 12:26+0200\n"
+"POT-Creation-Date: 2024-04-08 21:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,19 @@ msgid "Bootloader Menu"
 msgstr ""
 
 #: ../contents/ui/configEntries.qml
-msgid "Displayed boot entries in the plasmoid view"
+msgid "Toggle and rearrange entries displayed in the main view"
+msgstr ""
+
+#: ../contents/ui/configEntries.qml
+msgid "Toggle display of this entry"
+msgstr ""
+
+#: ../contents/ui/configEntries.qml
+msgid "Move this entry up the list"
+msgstr ""
+
+#: ../contents/ui/configEntries.qml
+msgid "Move this entry down the list"
 msgstr ""
 
 #: ../contents/ui/configEntries.qml

@@ -58,7 +58,7 @@ PlasmaExtras.Representation {
         required property string bIcon
         required property string title
         required property string version
-        width: parent ? parent.width : 0 // BUG: Occasional error here
+        width: parent ? parent.width : 0
         contentItem: RowLayout {
 
           Layout.fillWidth: true
@@ -94,12 +94,12 @@ PlasmaExtras.Representation {
         }
     }
 
-    // TODO: sections
-    /*section.property: "system"
-    section.delegate: Kirigami.ListSectionHeader {
-      width: parent.width
-      label: section == 1 ? "System entries" : "Custom entries"
-    }*/
+    PlasmaComponents.BusyIndicator {
+      implicitWidth: 150
+      implicitHeight: 150
+      anchors.centerIn: parent
+      visible: bootMgr.step < BootManager.Ready || busy
+    }
 
     ErrorMessage {
       id: noEntriesMsg
@@ -112,13 +112,6 @@ PlasmaExtras.Representation {
         icon.name: "configure"
         onTriggered: plasmoid.internalAction("configure").trigger()
       }
-    }
-
-    PlasmaComponents.BusyIndicator {
-      implicitWidth: 150
-      implicitHeight: 150
-      anchors.centerIn: parent
-      visible: bootMgr.step < BootManager.Ready || busy
     }
 
     ErrorMessage {
@@ -164,37 +157,21 @@ PlasmaExtras.Representation {
   function updateModel() {
     busy = true
     shownEntries.clear()
-    for (let entry of bootMgr.bootEntries) {
-      if (!plasmoid.configuration.blacklist.includes(entry.id)) {
-        shownEntries.append(entry)
-      }
+    for (let entry of JSON.parse(plasmoid.configuration.savedEntries)) {
+      if (entry.show) shownEntries.append(entry)
     }
     busy = false
   }
 
   Component.onCompleted: {
-    if (bootMgr.step === BootManager.Ready) { 
-      updateModel()
-    }
-  }
-
-  Connections {
-    target: bootMgr
-
-    function onLoaded(signal) {
-      if (signal === BootManager.Ready) {
-        bootMgr.alog("Boot entries are ready - Updating the listview")
-        updateModel()
-      }
-    }
-  
+    if (bootMgr.step >= BootManager.Ready) updateModel()
   }
 
   Connections {
     target: plasmoid.configuration
 
     function onValueChanged(value) {
-      if (bootMgr.step === BootManager.Ready && value == "blacklist") {
+      if (bootMgr.step === BootManager.Ready && value == "savedEntries") {
         //bootMgr.alog("Configuration has changed - Updating the listview")
         updateModel()
       }
