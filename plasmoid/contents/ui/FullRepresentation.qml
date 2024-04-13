@@ -11,6 +11,7 @@ PlasmaExtras.Representation {
 
   property var selectedEntry
   property bool busy: false
+  property bool resetting: false
 
   implicitWidth: Kirigami.Units.gridUnit * 20
   implicitHeight: mainList.height + header.height + Kirigami.Units.largeSpacing
@@ -30,8 +31,11 @@ PlasmaExtras.Representation {
       }
       PlasmaComponents.ToolButton {
         icon.name: "view-refresh"
-        onClicked: plasmoid.internalAction("reset").trigger()
-        PlasmaComponents.ToolTip { text: i18n("Reload this applet") }
+        onClicked: {
+          plasmoid.internalAction("reset").trigger()
+          resetting = true
+        }
+        PlasmaComponents.ToolTip { text: i18n("Reset this applet") }
       }
       PlasmaComponents.ToolButton {
         icon.name: "configure"
@@ -171,11 +175,21 @@ PlasmaExtras.Representation {
     target: plasmoid.configuration
 
     function onValueChanged(value) {
-      if (bootMgr.step === BootManager.Ready && value == "savedEntries") {
-        //bootMgr.alog("Configuration has changed - Updating the listview")
+      if (bootMgr.step === BootManager.Ready && value == "savedEntries" && plasmoid.configuration.savedEntries) {
         updateModel()
       }
     }
    }
+
+  // Workaround bug mainview not updating when ready
+  Connections {
+    target: bootMgr
+
+    function onReady(step) {
+      if (step === BootManager.Ready) {
+        resetting ? resetting = false : updateModel() // Prevent double refresh upon reset...
+      }
+    }
+  }
 
 }

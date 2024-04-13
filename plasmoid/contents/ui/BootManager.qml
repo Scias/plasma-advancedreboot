@@ -278,6 +278,8 @@ Item {
             alog("Finished initialization - Error state: " + (step === BootManager.Error))
             if (!reusedConfig) plasmoid.configuration.savedEntries = JSON.stringify(bootEntries)
             if (plasmoid.configuration.confVersion != confVersion) plasmoid.configuration.confVersion = confVersion
+            // Workaround mainview not updating sometimes...
+            ready(step)
             // Ugly workaround to give info to config panels
             plasmoid.configuration.checkState = [busctlOK,bootctlOK,canEfi,canMenu,canEntry,gotEntries]
             plasmoid.configuration.appState = step
@@ -298,5 +300,7 @@ Item {
         plasmoid.configuration.appLog += "> " + msg + "\n" // Workaround
         console.log("advancedreboot: " + msg)
     }
+
+    signal ready(int step)
 
 }
