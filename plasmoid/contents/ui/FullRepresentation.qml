@@ -161,8 +161,13 @@ PlasmaExtras.Representation {
   function updateModel() {
     busy = true
     shownEntries.clear()
-    for (let entry of JSON.parse(plasmoid.configuration.savedEntries)) {
-      if (entry.show) shownEntries.append(entry)
+    try {
+      for (let entry of JSON.parse(plasmoid.configuration.savedEntries)) {
+        if (entry.show) shownEntries.append(entry)
+      }
+    }
+    catch (err) {
+      bootmgr.alog("Error parsing saved entries for the mainview: " + err)
     }
     busy = false
   }

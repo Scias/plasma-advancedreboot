@@ -83,7 +83,7 @@ KCM.ScrollViewKCM {
       id: noEntriesMsg
       sIcon: "dialog-error-symbolic"
       message: i18n("No boot entries could be found.")
-      show: !plasmoid.configuration.savedEntries || plasmoid.configuration.appState == 4
+      show: allEntries.count == 0 || plasmoid.configuration.appState == 4
     }
     //TODO: Placeholder while entries not ready yet
   }
@@ -115,8 +115,13 @@ KCM.ScrollViewKCM {
 
   function loadEntries() {
     if (plasmoid.configuration.savedEntries) {
-      for (const entry of JSON.parse(plasmoid.configuration.savedEntries)) {
-        allEntries.append(entry)
+      try {
+        for (const entry of JSON.parse(plasmoid.configuration.savedEntries)) {
+          allEntries.append(entry)
+        }
+      }
+      catch (err) {
+        console.log("advancedreboot: Error parsing saved entries for the config view: " + err)
       }
     }
   }
@@ -134,7 +139,12 @@ KCM.ScrollViewKCM {
         show: entry.show,
       })
     }
-    plasmoid.configuration.savedEntries = JSON.stringify(tmp)
+    try {
+      plasmoid.configuration.savedEntries = JSON.stringify(tmp)
+    }
+    catch (err) {
+      console.log("advancedreboot: Error saving saved entries for the config view: " + err)
+    }
   }
 
   Component.onCompleted: {
