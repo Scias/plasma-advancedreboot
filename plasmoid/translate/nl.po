@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-04-08 21:28+0200\n"
+"POT-Creation-Date: 2024-04-13 23:27+0200\n"
 "PO-Revision-Date: 2024-03-24 12:49+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -128,7 +128,7 @@ msgid "Reboot to..."
 msgstr "Herstarten naar…"
 
 #: ../contents/ui/FullRepresentation.qml
-msgid "Reload this applet"
+msgid "Reset this applet"
 msgstr ""
 
 #: ../contents/ui/FullRepresentation.qml

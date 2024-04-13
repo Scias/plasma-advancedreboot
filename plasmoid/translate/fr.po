@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advancedreboot\n"
 "Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
-"POT-Creation-Date: 2024-04-08 21:28+0200\n"
+"POT-Creation-Date: 2024-04-13 23:27+0200\n"
 "PO-Revision-Date: 2024-03-16 21:00+0100\n"
 "Last-Translator: Scias <khirac@proton.me>\n"
 "Language-Team: \n"
@@ -126,8 +126,8 @@ msgid "Reboot to..."
 msgstr "Redémarrer vers..."
 
 #: ../contents/ui/FullRepresentation.qml
-msgid "Reload this applet"
-msgstr "Recharger cet applet"
+msgid "Reset this applet"
+msgstr "Réinitialiser cet applet"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Configure this applet"
@@ -176,6 +176,9 @@ msgstr "L'éntrée <b>"
 #: ../contents/ui/FullRepresentation.qml
 msgid "</b> has been set for the next reboot."
 msgstr "</b> a bien été définie pour le prochain démarrage"
+
+#~ msgid "Reload this applet"
+#~ msgstr "Recharger cet applet"
 
 #~ msgid "Displayed boot entries in the plasmoid view"
 #~ msgstr "Entrées de démarrage affichées dans l'applet"
