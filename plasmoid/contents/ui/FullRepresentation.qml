@@ -173,7 +173,7 @@ PlasmaExtras.Representation {
   }
 
   Component.onCompleted: {
-    if (bootMgr.step >= BootManager.Ready) updateModel()
+    if (bootMgr.step === BootManager.Ready || bootMgr.step === BootManager.Error) updateModel()
   }
 
   Connections {
