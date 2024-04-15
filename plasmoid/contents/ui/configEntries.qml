@@ -143,7 +143,7 @@ KCM.ScrollViewKCM {
       plasmoid.configuration.savedEntries = JSON.stringify(tmp)
     }
     catch (err) {
-      console.log("advancedreboot: Error saving saved entries for the config view: " + err)
+      console.log("advancedreboot: Error saving entries from the config view: " + err)
     }
   }
 
