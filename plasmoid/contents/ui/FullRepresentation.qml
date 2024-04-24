@@ -96,6 +96,7 @@ PlasmaExtras.Representation {
           myNotif.sendEvent()
           bootMgr.bootEntry(id)
         }
+        HoverHandler { cursorShape: Qt.PointingHandCursor }
     }
 
     PlasmaComponents.BusyIndicator {
