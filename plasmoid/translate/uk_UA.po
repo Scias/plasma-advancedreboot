@@ -1,0 +1,177 @@
+# Translation of advancedreboot in uk_UA
+# Copyright (C) 2024
+# This file is distributed under the same license as the advancedreboot package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: advancedreboot\n"
+"Report-Msgid-Bugs-To: https://www.gitlab.com/Scias/plasma-advancedreboot\n"
+"POT-Creation-Date: 2024-04-13 23:27+0200\n"
+"PO-Revision-Date: 2024-06-04 19:03+0300\n"
+"Last-Translator: Sergiy Golovko <cappelikan@gmail.com>\n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contents/config/config.qml
+msgid "Entry management"
+msgstr "Управління входом"
+
+#: ../contents/config/config.qml
+msgid "Debug information"
+msgstr "Інформація про налагодження"
+
+#: ../contents/ui/BootManager.qml
+msgid "Firmware Setup"
+msgstr "Налаштування прошивки"
+
+#: ../contents/ui/BootManager.qml
+msgid "Bootloader Menu"
+msgstr "Меню завантажувача"
+
+#: ../contents/ui/configEntries.qml
+msgid "Toggle and rearrange entries displayed in the main view"
+msgstr "Перемикайте та змінюйте порядок записів, що відображаються в головному вікні"
+
+#: ../contents/ui/configEntries.qml
+msgid "Toggle display of this entry"
+msgstr "Перемкнути відображення цього запису"
+
+#: ../contents/ui/configEntries.qml
+msgid "Move this entry up the list"
+msgstr "Перемістіть цей запис угору списку"
+
+#: ../contents/ui/configEntries.qml
+msgid "Move this entry down the list"
+msgstr "Перемістіть цей запис вниз у списку"
+
+#: ../contents/ui/configEntries.qml
+msgid "No boot entries could be found."
+msgstr "Записи для завантаження не знайдено."
+
+#: ../contents/ui/configEntries.qml
+msgid "Behavior upon selecting an entry :"
+msgstr "Поведінка після вибору запису :"
+
+#: ../contents/ui/configEntries.qml
+msgid "Reboot immediately"
+msgstr "Перезавантажте негайно"
+
+#: ../contents/ui/configEntries.qml
+msgid "Reboot after confirmation"
+msgstr "Перезавантажте після підтвердження"
+
+#: ../contents/ui/configEntries.qml
+msgid "Don't reboot"
+msgstr "Не перезавантажуйте"
+
+#: ../contents/ui/configInfo.qml
+msgid "systemd is at version 251 or above"
+msgstr "systemd має версію 251 або вище"
+
+#: ../contents/ui/configInfo.qml
+msgid "bootctl is present"
+msgstr "bootctl присутній"
+
+#: ../contents/ui/configInfo.qml
+msgid "Can reboot to the Firmware Setup"
+msgstr "Можна перезавантажитися до налаштування мікропрограми"
+
+#: ../contents/ui/configInfo.qml
+msgid "Can reboot to the Bootloader Menu"
+msgstr "Можна перезавантажити в меню завантажувача"
+
+#: ../contents/ui/configInfo.qml
+msgid "Can reboot to a custom entry"
+msgstr "Можна перезавантажити до спеціального запису"
+
+#: ../contents/ui/configInfo.qml
+msgid "Could get the custom entries"
+msgstr "Можна отримати спеціальні записи"
+
+#: ../contents/ui/configInfo.qml
+msgid "In case of issues or missing entries, please ensure that the requirements shown below are met"
+msgstr "У разі виникнення проблем або відсутності записів переконайтеся, що наведені нижче вимоги виконані"
+
+#: ../contents/ui/configInfo.qml
+msgid "Reset configuration"
+msgstr "Скинути конфігурацію"
+
+#: ../contents/ui/configInfo.qml
+msgid "View log"
+msgstr "Переглянути журнал"
+
+#: ../contents/ui/configInfo.qml
+msgid "Reset settings?"
+msgstr "Скинути налаштування?"
+
+#: ../contents/ui/configInfo.qml
+msgid "This will reset this plasmoid's configuration and state."
+msgstr "Це скине конфігурацію та стан цього плазмоїда."
+
+#: ../contents/ui/configInfo.qml
+msgid "This plasmoid's configuration and state have been reset."
+msgstr "Конфігурацію та стан цього плазмоїда скинуто."
+
+#: ../contents/ui/configInfo.qml
+msgid "Log"
+msgstr "Журнал"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Reboot to..."
+msgstr "Перезавантажити до..."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Reset this applet"
+msgstr "Скинути цей аплет"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Configure this applet"
+msgstr "Налаштуйте цей аплет"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid ""
+"No boot entries could be listed.\n"
+"Please check this applet settings."
+msgstr ""
+"Не вдалося відобразити записи для завантаження.\n"
+"Перевірте налаштування цього аплету."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Configure"
+msgstr "Налаштувати"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid ""
+"This applet cannot work on this system.\n"
+"Please check that the system is booted in UEFI mode and that systemd, systemd-boot are used and configured properly."
+msgstr ""
+"Цей аплет не може працювати в цій системі.\n"
+"Будь ласка, переконайтеся, що система завантажується в режимі UEFI і що systemd, systemd-boot використовуються та налаштовані належним чином."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Root access is required to get the full boot entries list."
+msgstr "Щоб отримати повний список записів завантаження, потрібен доступ root."
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Retry as root"
+msgstr "Повторіть спробу як root"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Ignore"
+msgstr "Ігнорувати"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Advanced reboot"
+msgstr "Розширене перезавантаження"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "The entry <b>"
+msgstr "Запис <b>"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "</b> has been set for the next reboot."
+msgstr "</b> встановлено для наступного перезавантаження."

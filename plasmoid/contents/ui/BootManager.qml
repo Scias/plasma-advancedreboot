@@ -169,6 +169,7 @@ Item {
         }
 
         function exec(cmd) {
+            //TODO: LANG=C to avoid locale related issues
             if (cmd) connectSource(cmd)
         }
 
