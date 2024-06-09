@@ -35,6 +35,7 @@ A few distributions like OpenSUSE don't allow the unpriviledged user to set the 
 
 - [X] French
 - [X] Dutch (by Heimen Stoffels)
+- [X] Ukrainian (by cappelikan)
 
 If you wish to contribute your own translation, a template.pot file is available in the translate folder.
 
